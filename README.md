@@ -1,5 +1,4 @@
-﻿## pyALC7T
-
+## pyALC7T
 
 Index
 -----
@@ -70,7 +69,7 @@ Mit dem [Anaconda Python distribution system](https://www.continuum.io/) können
 pyALC7T und die benötigten Laufzeitkomponenten sehr einfach unter Linux, Windows und 
 Mac OS installiert werden.
 
-Dies ist in der [Installationsanleitung](https://github.com/bug400/pyilper/blob/master/INSTALL.md) näher beschrieben.
+Dies ist in der [Installationsanleitung](https://github.com/bug400/alc7t/blob/master/INSTALL.md) näher beschrieben.
 
 Für die grafische Anzeige von Messwerten muss [GNUPLOT](http://www.gnuplot.info) installiert
 werden. Ohne installiertes GNUPLOT werden die Messwerte lediglich tabellarisch

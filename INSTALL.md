@@ -1,4 +1,4 @@
-﻿pyALC7T Installationsanleitung
+pyALC7T Installationsanleitung
 ==============================
 
 Index
