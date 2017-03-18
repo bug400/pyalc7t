@@ -94,7 +94,7 @@ class cls_alc7t(QtCore.QObject):
 #
       try:
          ALCCONFIG.open(self.name,CONFIG_VERSION,self.instance)
-         ALCCONFIG.get(self.name,"tty","/dev/ttyUSB0")
+         ALCCONFIG.get(self.name,"tty","")
          ALCCONFIG.get(self.name,"workdir", os.path.expanduser('~'))
          ALCCONFIG.get(self.name,"gnuplot", "")
          ALCCONFIG.get(self.name,"version","0.0.0")
