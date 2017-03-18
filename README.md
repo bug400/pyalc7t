@@ -4,10 +4,10 @@ Index
 -----
 
 * [Description](#description)
-* [Beschreibung] (#beschreibung)
+* [Beschreibung](#beschreibung)
 * [Eigenschaften](#eigenschaften)
 * [Kompatibilität](#kompatibilität)
-* [Installation] (#installation)
+* [Installation](#installation)
 * [Lizenz](#lizenz)
 * [Danksagung](#danksagung)
 
