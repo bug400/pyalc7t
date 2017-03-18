@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=pyALC7T
+Comment=Data Logger for ALC 7000 charger
+Exec=pyalc7t
+Icon=alc7tsym
+GenericName=ALC 7000 data logger
+GenericName[de]=ALC 7000 Datenlogger
+Terminal=false
+Type=Application
+Categories=Qt;Utility;

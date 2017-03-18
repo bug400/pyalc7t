@@ -1,0 +1,11 @@
+/debian/pyalc7t.debhelper*
+/debian/pyalc7t.substvars
+/debian/files
+/debian/pyalc7t/
+/build/
+/p
+/__pycache__/
+/pyalc7t.egg-info/
+*.pyc
+*.swp
+*~
