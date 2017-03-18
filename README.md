@@ -1,4 +1,4 @@
-## pyALC7T
+## pyALC7T (Steuerprogramm und Datenlogger für ALC 7000 Expert)
 
 Index
 -----
