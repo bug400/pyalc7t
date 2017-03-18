@@ -57,7 +57,7 @@ class TableModel(QtGui.QStandardItemModel):
 class cls_PlotDialog(QtWidgets.QDialog):
 
    def __init__(self,kanal):
-      self.gnuplot=ALCCONFIG.get("alc7t","gnuplot")
+      self.gnuplot=ALCCONFIG.get("pyalc7t","gnuplot")
       super().__init__()
       self.vlayout=QtWidgets.QVBoxLayout()
       self.vlayout.setContentsMargins(20, 20, 20, 20)
