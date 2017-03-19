@@ -28,6 +28,8 @@
 # Changelog
 # 06.02.17 jsi
 # - erste Version
+# 20.03.17 jsi
+# - tabellen/zellengröße verbessert
 #
 import os
 import time 
@@ -97,10 +99,11 @@ class cls_PlotDialog(QtWidgets.QDialog):
       self.model.setHeaderData(1,QtCore.Qt.Horizontal,"Spannung")
       self.model.setHeaderData(2,QtCore.Qt.Horizontal,"Strom")
       self.table.setModel(self.model)
-      metrics= QtGui.QFontMetrics(QtGui.QFont())
-      item_width= metrics.width(" Spannung ")
-      self.table.horizontalHeader().setDefaultSectionSize(item_width)
-      self.table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
+      self.dataFont= QtGui.QFont()
+      metrics= QtGui.QFontMetrics(self.dataFont)
+      item_width= metrics.width(" 00:00:0000 ")
+      self.table.horizontalHeader().setDefaultSectionSize(item_width+2)
+      self.table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
 #
 #     kein Vertical Header
 #
@@ -110,8 +113,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
 #     Zeilenhöhe anpassen
 #
       item_height=metrics.height()
-      self.table.verticalHeader().setDefaultSectionSize(item_height)
-
+      self.table.verticalHeader().setDefaultSectionSize(item_height+2)
 
       self.hlayout.addWidget(self.table)
 #
@@ -218,6 +220,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
                item=QtGui.QStandardItem(str(datetime.timedelta(seconds=int(col))))
             else:
                item=QtGui.QStandardItem(col)
+            item.setFont(self.dataFont)
             item.setTextAlignment(QtCore.Qt.AlignLeft)
             self.model.setItem(i,j,item)
          self.rowcount+=1
