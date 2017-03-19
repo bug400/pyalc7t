@@ -568,7 +568,7 @@ class cls_kanal(object):
          if l is None:
             return
          if self.CGrFlag:
-            write_log_msg("# Abbruch: Ladekapazitätsgrenzwert (%6.3f Ah) erreicht.\n" % self.CLadGr)
+            self.write_log_msg("Abbruch: Ladekapazitätsgrenzwert (%6.3f Ah) erreicht.\n" % self.CLadGr)
          else:
             l.write("#\n")
             l.write("# Programmende\n")
