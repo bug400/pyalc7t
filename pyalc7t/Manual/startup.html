@@ -27,8 +27,36 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <div class="w3-col w3-container">
 
 <!-- Begin content -->
-<h2 class="w3-test-teal" >Einrichtung und Inbetriebnahme von pyALC7T</h2>
-<p>Die Online-Hilfe von pyALC7T befindet sich derzeit im Aufbau</p>
+<h2 class="w3-text-teal">Erste Schritte</h2>
+
+<p>Beim ersten Programmstart muss die korrekte serielle Schnittstelle angegeben
+werden, an der das Ladeger&auml;t ALC7000 angeschlossen ist. Außerdem muss das
+Arbeitsverzeichnis eingerichtet werden, in dem die Arbeits- und Logdateien von
+pyALC7T abgelegt werden.  Dies geschieht über den Men&uuml;punkt "pyALC7T Konfiguration"
+im Men&uuml; "Datei".</p>
+
+<p>Bei der Eingabe der seriellen Schnittstelle versucht pyALC7T geeignete Vorschl&auml;ge
+f&uuml;r den Namen der seriellen Schnittstelle zu machen, sofern ein USB-RS232
+Adapter angeschlossen ist.</p>
+
+<p>Unter LINUX ist der Name der Schnittstelle &uuml;blicherweise /dev/ttyUSBn. 
+Überpr&uuml;fen Sie bitte, ob Sie Lese- und Schreibrechte für das Ger&auml;t haben! 
+Bei manchen LINUX Distributionen ist dazu die Zugehörigkeit zu einer bestimmten 
+Benutzergruppe (z.B. <code> dialout</code> erforderlich.</p>
+
+<p>Unter Windows ist das Ger&auml;t COMn. Wenn Sie unsicher sind, dann 
+&uuml;berpr&uuml;fen Sie bitte die seriellen Schnittstellen im Ger&auml;temanager.</p>
+
+<p>Unter Mac OS ist der Ger&auml;tename üblicherweise /dev/tty.usbserial-XXXX.</p>
+
+<p>pyALC7T speichert alle LOG-Dateien und Arbeitsdateien in einem Arbeitsverzeichnis.
+Dies ist standardm&auml;&szlig;ig das HOME-Verzeichnis des Benutzers. Sie sollten hierfür 
+ein geeignetes Unterverzeichnis einrichten und einstellen.</p>
+
+<p>Wenn die Verbindung zwischen Programm und dem ALC 7000 Expert erfolgreich ist dann
+beginnt pyALC7T die Konfiguration der 4 Kan&auml;le auszulesen und anzuzeigen und beginnt
+dann mit der kontinuierlichen Abfrage und Anzeige der Messwerte der 4 Kan&auml;le.</p>
+
 <!-- End content -->
 
 </div>
@@ -38,7 +66,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
       <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </div>
   </footer>
-
 
 <!-- END MAIN -->
 </div>

@@ -1,4 +1,4 @@
-pyALC7T Installationsanleitung
+﻿pyALC7T Installationsanleitung
 ==============================
 
 Index
@@ -157,7 +157,7 @@ Laden Sie die Datei pyalc7t-master von der GitHub Seite von pyALC7T ("Download Z
 
 Sie können die Entwicklungsversion nun mit:
 
-      Python <Pfad zum pyalc7t-Verzeichnis>/startklar
+      Python <Pfad zum pyalc7t-Verzeichnis>/start.py
 
 ausführen.
 
