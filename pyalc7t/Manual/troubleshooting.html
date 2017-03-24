@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/w3.css">
+<link rel="stylesheet" href="css/w3-theme-black.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<script src="js/w3data.js"></script>
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+.w3-sidenav a,.w3-sidenav h4 {padding: 12px;}
+.w3-bar a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+</style>
+</head><body>
+<div w3-include-html="nav.html"></div>
+
+<!-- Overlay effect when opening sidenav on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main: shift it to the right by 250 pixels when the sidenav is visible -->
+<div class="w3-main" style="margin-left:250px">
+<div class="w3-row w3-padding-64">
+<div class="w3-col w3-container">
+
+<!-- Begin content -->
+
+<h2 class="w3-text-teal">St&ouml;rungsbeseitigung</h2>
+
+<h3 class="w3-text-teal">Probleme mit der Konfigurationsdatei</h3>
+
+<p>Abst&uuml;rze beim Programmstart werden of durch eine besch&auml;digte
+Konfigurationsdatei verursacht. In diesem Fall muss die Konfigurationsdatei
+gel&ouml;scht werden. Der Speicherort dieser Datei ist betriebssystemabh&auml;ngig: </p>
+
+<table class="w3-table-all">
+<tr><th>Platform</th><th>Directory</th></tr>
+<tr><td>LINUX</td><td>$HOME/.config/pyalc7t</td></tr>
+<tr><td>Windows</td><td>%APPDATA%\pyalc7t</td></tr>
+<tr><td>Mac OS X</td><td>$HOME/Library/Application Support/pyalc7t</td></tr>
+<tr><td>Other</td><td>$HOME</td></tr>
+</table>
+
+<p>Der Name der Konfigurationsdatei ist pyalc7t<em>n</em> wobei <em>n</em> die
+Versionsnummer der Konfigurationsdatei ist. Die Versionsnummer der Konfigurationsdatei
+wird immer dann heraufgesetzt, wenn sich mit einer neuen Programmversion die Struktur
+der Datei ändert. In diesem Fall muss pyALC7T neu konfiguriert werden. </p>
+
+<p>Wenn das Programm überhaupt nicht startet, dann l&ouml;schen Sie die Konfigurationsdatei
+und überprüfen Sie die Berechtigungen des Verzeichnisses, in dem die Konfigurationsdatei 
+angelegt wird.</p>
+
+
+<h3 class="w3-text-teal">Fehlermeldungens</h3>
+
+<p><code>Kann serielle Schnittstelle xxx nicht &ouml;ffnen </code><br>
+Das Programm konnte die serielle Schnittstelle nicht &ouml;ffnen. Pr&uuml;fen
+Sie, ob die Serielle Schnittstelle im Betriebssystem eingerichtet ist und ob sie
+in der Programmkonfiguration richtig angegeben wurde. Unter LINUX sind ggf. 
+spezielle Benutzerberechtigungen, wie z.B. die Zugeh&ouml;rigkeit zu einer
+Gruppe <code>dialout</code> notwendig.</p>
+
+<h3 class="w3-text-teal">Fehlersuche bei Programmabst&uuml;rzen</h3>
+
+<p>Wenn Sie pyALC7T aus einem Terminal- oder Konsolefenster aufrufen, dann erhalten
+Sie die betreffeden Python-Laufzeitfehlermeldungen.</p>
+
+<!-- End content -->
+
+</div>
+</div>
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l1">
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+
+<!-- END MAIN -->
+</div>
+<script>
+w3IncludeHTML();
+</script>
+
+</body></html>
