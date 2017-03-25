@@ -36,44 +36,86 @@ zu konfigurieren und zu steuern.</p>
 <h3 class="w3-text-teal">Konfigurieren</h3> 
 <h4 class="w3-text-teal">Neu</h4>
 
-<p>yy</p>
+<p>Mit diesem Men&uuml;punkt k&ouml;nnen Sie die Kan&auml;le konfigurieren. Die
+Konfigurationen einzelner Kan&auml;le k&ouml;nnen in Kanalkonfigurationsdateien
+verwaltet werden.</p>
+
+<p>F&uuml;r die Konfiguration der Kan&auml;le &ouml;ffnet sich ein eigenes
+Dialogfenster. Hier k&ouml;nnen folgende Konfigurationsparameter eingegeben werden:</p>
+
+<ul class="w3-ul">
+<li>Akkutyp</li>
+<li>Zellenzahl</li>
+<li>Nennspannung</li>
+<li>Nennkapazit&auml;t</li>
+<li>Ladestrom</li>
+<li>Entladestrom</li>
+<li>Beschreibung</li>
+</ul>
+
+<p>Für die weitere Verarbeitung der Konfiguration stehen folgende Schaltfl&auml;chen
+zur Verf&uuml;gung:</p>
 
 <h4 class="w3-text-teal">Laden</h4>
 
-<p>yy</p>
+<p>Die Kanalkonfiguration wird zur&uuml;ckgesetzt.</p>
+
+<h4 class="w3-text-teal">Laden</h4>
+
+<p>Eine Kanalkonfiguration wird aus einer vorhandenen Kanalkonfigurationsdatei
+geladen.</p>
 
 <h4 class="w3-text-teal">Pr&uuml;fen</h4>
 
-<p>yy</p>
+<p>Die aktuell eingestellten Werte der Kanalkonfiguration werden gepr&uuml;ft. Erst
+wenn die Pr&uuml;fung erfolgreich verlaufen ist, wird die Schaltfl&auml;che
+<em>Programmieren</em> frei geschaltet.</p>
+
+<p>Es finden folgende Plausibilit&auml;tspr&uuml;fungen und Korrekturen statt:</p>
+
+<ul class="w3-ul">
+<li>Der Ladestrom dar nicht gr&ouml;&szlig;er als die doppelte Nennkapazit&auml;t sein. Dies wird automatisch korrigiert.</li>
+<li>Wenn die Akkuspannung h&ouml;her als 20% der Nennspannung der eingestellten Anzahl Zellen ist, dann wird die Anzahl der Zellen angepasst.</li>
+<li>Der Lade- bzw. Entladestrom wird bei Kanal 1 und 2 auf je 3.5 A begrenzt.</li>
+<li>Der Lade- bzw. Entladestrom wird bei Kanal 3 und 4 auf je 1 A begrenzt.</li>
+</ul>
+
 
 <h4 class="w3-text-teal">Speichern</h4>
 
-<p>yy</p>
+<p>Die aktuelle Kanalkonfiguration wird in einer Datei gespeichert. Diese
+Schaltfläche ist nur frei geschaltet, wenn die Kanalkonfiguration gepr&uuml;ft wurde.</p>
 
 <h4 class="w3-text-teal">Programmieren</h4>
 
-<p>yy</p>
+<p>Die aktuelle Kanalkonfiguration wird im ALC 7000 Expert eingestellt. Diese
+Schaltfl&auml;che ist nur frei geschaltet, wenn die Kanalkonfiguration gepr&uuml;ft
+wurde.</p>
 
 <h4 class="w3-text-teal">Ende</h4>
 
-<p>yy</p>
+<p>Beendet das Dialogfenster f&uuml;r die Kanalkonfiguration.</p>
 
 
 <h3 class="w3-text-teal">Starten</h3>
 
-<p>yy</p>
+<p>Die aktuell eingestellte Ladefunktion wird auf dem ALC 7000 Expert gestartet.</p>
 
 <h3 class="w3-text-teal">Beenden</h3>
 
-<p>Beendet das Programm.</p>
+<p>Die auf dem ALC 7000 aktive Ladefunktion wird beendet.</p>
 
 <h3 class="w3-text-teal">Checkboxen zur Auswahl der Ladefunktion</h3>
 
-<p>yy</p>
+<p>Die gew&uuml;nschte Ladefunktion kann mit den Check-Boxen ausgew&auml;hlt
+werden. Diese Auswahl ist nur m&ouml;glich, wenn keine Ladefunktion aktiv ist.</p>
 
 <h3 class="w3-text-teal">Messwerte</h3>
 
-<p>yy</p>
+<p>Die Messwerte werden tabellarisch oder als Grafik in einem eigenen Dialogfenster
+angezeigt. Dieses Fester kann ge&ouml;ffnet bleiben. Die Anzeigen werden
+regelm&auml;&szlig;ig aktualisiert. Eine Grafikanzeige erfolgt nur dann wenn mindestens
+4 Messwerte vorliegen und das Programm <em>GNUPLOT</em> installiert ist.</p>
 
 <!-- End content -->
 

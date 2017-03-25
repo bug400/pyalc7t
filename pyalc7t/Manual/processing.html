@@ -27,21 +27,23 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
 <div class="w3-col w3-container">
 
 <!-- Begin content -->
+<h2 class="w3-text-teal">Messwertverarbeitung</h2>
 
-<h2 class="w3-text-teal">Verschiedenes</h2>
-<p>Diese Seite verweist auf Dokumente zu unterschiedlichen Themen.</p>
+<p>Wenn auf dem ALC 7000 Expert eine Ladefunktion gestartet wurde, dann wird im 
+<em>pyALC7T</em> Arbeitsverzeichnis eine Messwertdatei gespeichert, in der die Zeit
+(in Sekunden seit Beginn der Ladefunktion), die gemessene Spannung und der gemessene
+Strom gespeichert werden. Diese Datei hat den Namen 
+<em>Version</em>_kanal<em>Kanalnummer</em>.amw. Es werden f&uuml;r jeden Kanal
+maximal 4 Versionen der Messwertdatei aufgehoben. Diese Versionen haben die Nummern 0
+bis 4.</p>
 
-<h3 class="w3-text-teal"><a class="w3-hover-black" name="troubleshooting" href="troubleshooting.html">St&ouml;rungsbeseitigung</a></h3>
-<p>Fehlermeldungen und Probleml&ouml;sungen.</p>
+<p>Während des Ladevorgangs wird die geladene Kapazit&auml;t angezeigt, die aus
+dem gemessenen Ladestrom und der Zeit berechnet wird. Wenn die geladene Kapazit&auml;t
+die Nennkapazit&auml;t um 20% &uuml;berschreitet, dann schalten <em>pyALCT</em> den
+Ladevorgang ab.</p>
 
-<h3 class="w3-text-teal"><a class="w3-hover-black" name="releasenotes" href="releasenotes.html">Release Notes</a></h3>
-<p>Versionsinformationen für die aktuelle Programmversion.</p>
+<p>Beim Ladevorgang wird das Delta-Peak der letzten Messung berechnet und angezeigt.</p>
 
-<h3 class="w3-text-teal"><a class="w3-hover-black" name="changelog" href="changelog.html">Versions&auml;derungen</a></h3>
-<p>Chronologie der Versions&auml;nderungen.</p>
-
-<h3 class="w3-text-teal"><a class="w3-hover-black" name="license" href="license.html">Lizenz</a></h3>
-<p>Lizenzinformationen für <em>pyALC7T</em>.</p>
 <!-- End content -->
 
 </div>
@@ -51,7 +53,6 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
       <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
     </div>
   </footer>
-
 
 <!-- END MAIN -->
 </div>
