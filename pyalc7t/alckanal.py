@@ -27,7 +27,7 @@
 # Changelog
 # 08.02.2017 jsi
 # - Ersterstellung
-# 20.03.2017 jsi
+# 25.03.2017 jsi
 # - Fehlermeldung Abbruch wg. geladener Kapazität verbessert
 #
 
@@ -568,7 +568,7 @@ class cls_kanal(object):
          if l is None:
             return
          if self.CGrFlag:
-            self.write_log_msg("Abbruch: Ladekapazitätsgrenzwert (%6.3f Ah) erreicht.\n" % self.CLadGr)
+            self.write_log_msg("Abbruch: Ladekapazitätsgrenzwert (%6.3f Ah) erreicht." % self.CLadGr)
          else:
             l.write("#\n")
             l.write("# Programmende\n")
