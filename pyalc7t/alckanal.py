@@ -29,13 +29,15 @@
 # - Ersterstellung
 # 25.03.2017 jsi
 # - Fehlermeldung Abbruch wg. geladener Kapazität verbessert
+# 26.03.2017 jsi
+# - Fehlerbehandlung verbessert
 #
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import datetime
 import os
 import time
-from .alcwidgets import cls_KanalWidget, cls_KanalConfigWindow
+from .alcwidgets import cls_KanalWidget, cls_KanalConfigWindow, cls_AlcMessageBox
 from .alcplot import cls_PlotDialog
 from .alcrs232 import Rs232Error
 from .alccore import *
@@ -201,12 +203,12 @@ class cls_kanal(object):
          self.actionRefresh.setEnabled(True)
          self.actionZyklisch.setEnabled(True)
 #
-#  Kanal enablen, Konfiguration lesen
+#  Kanal enablen, Konfiguration lesen, wird vom thread aufgerufen
 #
    def enable(self):
       self.reset_vars()
       self.ui.emit_message("Lese Konfiguration für Kanal "+str(self.kanalnummer))
-      self.readconfig()
+      self.readconfig() # throws KanalError
       self.status= STAT_ENABLED
       self.config_menu()
       self.show_conf()
@@ -609,9 +611,8 @@ class cls_kanal(object):
             p= self.alc7t.commobject.read_Progr(self.kanalnummer)
             if p == PROG_LADEN:
                break
-         self.readconfig()
+         self.readconfig() # throws KanalError
       except Rs232Error as e:
-         print(e.value)
          raise KanalError("Kann neue Kanaleinstellung nicht vornehmen",e.value)
       self.show_conf()
       self.config_menu()
@@ -639,7 +640,7 @@ class cls_kanal(object):
       except Rs232Error as e:
          QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
-         raise KanalError("Kann Programm nicht einstellen",e.value)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht einstellen: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       self.Progr=programm
       self.show_conf()
       self.config_menu()
@@ -699,7 +700,11 @@ class cls_kanal(object):
 #     Meldungen anzeigen, wenn Fehler vorliegt
 #
       if not meldungen == "" :
-         raise KanalError("Konfiguration fehlerhaft",meldungen)
+         mb = cls_AlcMessageBox()
+         mb.setText("Fehler bei der Prüfung")
+         mb.setDetailedText(meldungen)
+         mb.exec_()
+         return
       self.reset_vars()
       self.alc7t.commthread.halt()
       try:
@@ -713,7 +718,7 @@ class cls_kanal(object):
       except Rs232Error as e:
          QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
-         raise KanalError("Kann Kanal nicht aktivieren", e.value)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht starten: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       self.KanStatus=p
       self.config_menu()
       self.alc7t.commthread.resume()
@@ -733,7 +738,7 @@ class cls_kanal(object):
       except Rs232Error as e:
          QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
-         raise KanalError("Kann Programm nicht beenden", e.value)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht beenden: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       self.KanStatus=p
       self.config_menu()
       self.alc7t.commthread.resume()
