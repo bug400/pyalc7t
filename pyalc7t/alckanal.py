@@ -31,6 +31,8 @@
 # - Fehlermeldung Abbruch wg. geladener Kapazität verbessert
 # 26.03.2017 jsi
 # - Fehlerbehandlung verbessert
+# 31.03.2017 jsi
+# - Kanalstatus wird jetzt richtig verarbeitet
 #
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -116,7 +118,7 @@ class cls_kanal(object):
 #     Status
 #
       self.status= STAT_DISABLED
-      self.KanStatus= KSTAT_INAKTIV
+      self.KanStatus= KSTAT_UNKNOWN
       self.AkStatus= AKSTAT_KEIN_AKKU
 #
 #     Log Datei
@@ -355,7 +357,10 @@ class cls_kanal(object):
 #
 #        Kanal- und Akkustatus lesen
 #
+         oldstatus=self.KanStatus
          self.KanStatus= self.alc7t.commobject.read_KanStatus(kanalnr)
+         if oldstatus != self.KanStatus:
+            self.config_menu()
          self.AkStatus = self.alc7t.commobject.read_AkStatus(kanalnr)
 #
 #        Stromrichtung lesen

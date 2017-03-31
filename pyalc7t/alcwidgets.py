@@ -27,6 +27,8 @@
 # Changelog
 # 06.02.2017 jsi
 # - Ersterstellung
+# 30.03.2017 jsi
+# - Input Mask bei Kanalkonfiguration auf 2 Nachkommastellen begrenzt
 #
 import os
 import glob
@@ -69,7 +71,7 @@ class cls_AboutWindow(QtWidgets.QDialog):
       super().__init__()
       self.qtversion=QtCore.QT_VERSION_STR
       self.pyversion=str(sys.version_info.major)+"."+str(sys.version_info.minor)+"."+str(sys.version_info.micro)
-      self.setWindowTitle('pyILPER About ...')
+      self.setWindowTitle('pyALC7T About ...')
       self.vlayout = QtWidgets.QVBoxLayout()
       self.setLayout(self.vlayout)
       self.view = QtWidgets.QLabel()
@@ -102,7 +104,7 @@ class cls_HelpWindow(QtWidgets.QDialog):
    def __init__(self,parent=None):
 #
       super().__init__()
-      self.setWindowTitle('pyILPER Manual')
+      self.setWindowTitle('pyALC7T Manual')
 
       self.vlayout = QtWidgets.QVBoxLayout()
       self.setLayout(self.vlayout)
@@ -763,13 +765,13 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       self.comboBox_akkutyp.addItem("Blei")
       self.comboBox_akkutyp.activated.connect(self.do_comboBox_akkutyp)
 
-      self.lineEdit_Nennkapazitaet.setInputMask("00.000")
+      self.lineEdit_Nennkapazitaet.setInputMask("00.00")
       self.lineEdit_Nennkapazitaet.editingFinished.connect(self.do_lineEdit_Nennkapazitaet)
 
-      self.lineEdit_Ladestrom.setInputMask("0.000")
+      self.lineEdit_Ladestrom.setInputMask("0.00")
       self.lineEdit_Ladestrom.editingFinished.connect(self.do_lineEdit_Ladestrom)
 
-      self.lineEdit_Entladestrom.setInputMask("0.000")
+      self.lineEdit_Entladestrom.setInputMask("0.00")
       self.lineEdit_Entladestrom.editingFinished.connect(self.do_lineEdit_Entladestrom)
 
       self.lineEdit_Beschreibung.editingFinished.connect(self.do_lineEdit_Beschreibung)
