@@ -29,6 +29,7 @@
 # - Ersterstellung
 # 30.03.2017 jsi
 # - Input Mask bei Kanalkonfiguration auf 2 Nachkommastellen begrenzt
+# - Nennkapazität, Lade- und Entladestrom können nicht 0 sein
 #
 import os
 import glob
@@ -924,6 +925,20 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
 #
    def do_pruefen(self):
       meldungen=""
+#
+#     Kapazität, Lade und Entladestrom muessen größer als 0.01 sein
+#
+      if self.config['ILad'] < 0.01:
+         meldungen=meldungen+"Ladestrom < 0.01, Wert wurde korrigiert.\n"
+         self.config['ILad']= 0.01
+
+      if self.config['IEntl'] < 0.01:
+         meldungen=meldungen+"Entladestrom < 0.01, Wert wurde korrigiert.\n"
+         self.config['IEntl']= 0.01
+
+      if self.config['CNenn'] < 0.01:
+         meldungen=meldungen+"Nennkapazität < 0.01, Wert wurde korrigiert.\n"
+         self.config['CNenn']= 0.01
 #
 #     Ladestrom maximal doppelte Nennkapazität
 #
