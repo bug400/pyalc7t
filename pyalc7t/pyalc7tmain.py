@@ -27,6 +27,10 @@
 # Changelog
 # 06.02.17
 # - erste Version
+# 22.04.2017 jsi
+# - Fehlermeldungen verbessert
+# 14.05.2017 jsi
+# - Fehlermeldungen eingedeutscht
 #
 #
 import os
@@ -102,7 +106,7 @@ class cls_alc7t(QtCore.QObject):
          ALCCONFIG.get(self.name,"helpposition","")
          ALCCONFIG.save()
       except AlcConfigError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Error',e.msg+': '+e.add_msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+': '+e.add_msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          QtWidgets.QApplication.quit()
 #
 #     ermitteln ob wir eine Version von alc7t erstmalig ausführen
@@ -157,10 +161,10 @@ class cls_alc7t(QtCore.QObject):
       try:
          os.chdir(ALCCONFIG.get(self.name,"workdir"))
       except EnvironmentError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Error',"Kann nicht auf Arbeitsverzeichnis wechseln: "+e.sterror,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann nicht auf Arbeitsverzeichnis wechseln: "+e.sterror,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
          return
       except TypeError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Error',"Kann nicht auf Arbeitsverzeichnis wechseln: "+e.sterror,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann nicht auf Arbeitsverzeichnis wechseln: "+e.sterror,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
          return
 #
 #     Verbindung zu ALC7000 aufbauen
@@ -171,10 +175,10 @@ class cls_alc7t(QtCore.QObject):
          self.kennung= self.commobject.read_ident()
          self.version=self.commobject.read_version()
       except Rs232Error as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Error',e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          return
       if not self.kennung == "ALC7000":
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Error',"Gerät nicht gefunden",QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Gerät nicht gefunden",QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          return
 #
 #     Thread erzuegen
@@ -249,7 +253,7 @@ class cls_alc7t(QtCore.QObject):
          try:
             ALCCONFIG.save()
          except AlcConfigError as e:
-            reply=QtWidgets.QMessageBox.critical(self.ui,'Error',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+            reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
             return
          self.enable()
 #
@@ -271,7 +275,7 @@ class cls_alc7t(QtCore.QObject):
       try:
          ALCCONFIG.save()
       except AlcConfigError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Error',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
       QtWidgets.QApplication.quit()
 #
 #     callback show about window
@@ -305,7 +309,7 @@ class cls_alc7t(QtCore.QObject):
             self.helpwin= cls_HelpWindow()
             self.helpwin.loadDocument(path,document)
          except HelpError as e:
-            reply=QtWidgets.QMessageBox.critical(self.ui,'Error',e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+            reply=QtWidgets.QMessageBox.warning(self.ui,'Warnung',e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
             return
          helpposition=ALCCONFIG.get(self.name,"helpposition")
          if helpposition!= "":

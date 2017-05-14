@@ -30,6 +30,10 @@
 # 30.03.2017 jsi
 # - Input Mask bei Kanalkonfiguration auf 2 Nachkommastellen begrenzt
 # - Nennkapazität, Lade- und Entladestrom können nicht 0 sein
+# 14.04.2017 jsi
+# - Fehlermeldungen verbessert
+# 14.05.2017 jsi
+# - Fehlermeldungen eingedeutscht
 #
 import os
 import glob
@@ -1010,7 +1014,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
          return
       s=flist[0]
       if os.access(s,os.W_OK):
-         reply=QtGui.QMessageBox.warning(self,'Warning',"Möchten Sie folgende Datei überschfreiben: "+s,QtGui.QMessageBox.Ok,QtGui.QMessageBox.Cancel)
+         reply=QtGui.QMessageBox.warning(self,'Warnung',"Möchten Sie folgende Datei überschfreiben: "+s,QtGui.QMessageBox.Ok,QtGui.QMessageBox.Cancel)
          if reply== QtGui.QMessageBox.Cancel:
             return
 
@@ -1019,7 +1023,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
          f= open(s,"w")
          json.dump(self.config,f,sort_keys=True,indent=3)
       except json.JSONDecodeError as e:
-         reply=QtWidgets.QMessageBox.critical(self,'Fehler',"Kanalkonfiguration kann encodiert werden."+e.msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self,'Fehler',"Kanalkonfiguration kann nicht in JSON umgewandelt werden."+e.msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       except OSError as e:
          reply=QtWidgets.QMessageBox.critical(self,'Fehler',"Kanalkonfiguration kann nicht gespeichert werden."+e.strerror,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       finally:

@@ -27,6 +27,8 @@
 # Changelog
 # 28.02.2017 jsi
 # - von pyILPER übernommen
+# 22.04.2017 jsi
+# - Fehlermeldungen eingedeutscht
 
 import json
 import os
@@ -86,20 +88,20 @@ class cls_userconfig:
             try:
                os.makedirs(self.__configpath__)
             except OSError as e:
-               raise ConfigError("Cannot create path for configuration file", e.strerror)
+               raise ConfigError("Kann das Verzeichnis für die Konfigurationsdatei nicht anlegen", e.strerror)
          try:
             self.write(default)
          except OSError as e:
-            raise ConfigError("Cannot write default configuration file", e.strerror)
+            raise ConfigError("Kann die Konfigurationsdatei nicht anlegen", e.strerror)
          return default
       try:
          f=None
          f= open(self.__configfile__,"r")
          config= json.load(f)
       except json.JSONDecodeError as e:
-         raise ConfigError("Cannot encode configuration data")
+         raise ConfigError("Kanalkonfiguration kann nicht dekodiert werden")
       except OSError as e:
-         raise ConfigError("Cannot read configuration file", e.strerror)
+         raise ConfigError("Konfigurationsdatei kann nicht gelesen werden", e.strerror)
       finally:
          if f != None:
             f.close()
@@ -114,9 +116,9 @@ class cls_userconfig:
          f= open(self.__configfile__,"w")
          json.dump(config,f,sort_keys=True,indent=3)
       except json.JSONDecodeError as e:
-         raise ConfigError("Cannot decode configuration data")
+         raise ConfigError("Kann Konfiguration nicht in JSON umwandeln")
       except OSError as e:
-         raise ConfigError("Cannot write to configuration file", e.strerror)
+         raise ConfigError("Konfigurationsdatei kann nicht geschrieben werden", e.strerror)
       finally:
          if f != None:
             f.close()

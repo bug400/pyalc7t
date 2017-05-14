@@ -27,6 +27,8 @@
 # Changelog
 # 28.02.2017 jsi:
 # - von pyILPER übernommen
+# 14.05.2017 jsi:
+# - Fehlermeldung eingedeutscht
 #
 from .userconfig import cls_userconfig, ConfigError
 from .alccore import CONFIG_VERSION
@@ -68,7 +70,7 @@ class cls_alcconfig:
          p= self.__config__[pname]
       except KeyError:
          if default is None:
-            raise AlcConfigError("configuration parameter not found: "+pname)
+            raise AlcConfigError("Konfigurationsparameter nicht gefunden: "+pname)
          else:
             self.__config__[pname]= default
             p=default

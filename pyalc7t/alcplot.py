@@ -114,6 +114,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
 #
       item_height=metrics.height()
       self.table.verticalHeader().setDefaultSectionSize(item_height+2)
+#     self.table.setFixedWidth(item_width*3)
 
       self.hlayout.addWidget(self.table)
 #
