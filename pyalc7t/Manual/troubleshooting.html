@@ -47,10 +47,10 @@ gel&ouml;scht werden. Der Speicherort dieser Datei ist betriebssystemabh&auml;ng
 <p>Der Name der Konfigurationsdatei ist pyalc7t<em>n</em> wobei <em>n</em> die
 Versionsnummer der Konfigurationsdatei ist. Die Versionsnummer der Konfigurationsdatei
 wird immer dann heraufgesetzt, wenn sich mit einer neuen Programmversion die Struktur
-der Datei ändert. In diesem Fall muss pyALC7T neu konfiguriert werden. </p>
+der Datei &auml;ndert. In diesem Fall muss pyALC7T neu konfiguriert werden. </p>
 
-<p>Wenn das Programm überhaupt nicht startet, dann l&ouml;schen Sie die Konfigurationsdatei
-und überprüfen Sie die Berechtigungen des Verzeichnisses, in dem die Konfigurationsdatei 
+<p>Wenn das Programm &uuml;berhaupt nicht startet, dann l&ouml;schen Sie die Konfigurationsdatei
+und &uuml;berpr&uuml;fen Sie die Berechtigungen des Verzeichnisses, in dem die Konfigurationsdatei 
 angelegt wird.</p>
 
 
@@ -58,10 +58,84 @@ angelegt wird.</p>
 
 <p><code>Kann serielle Schnittstelle xxx nicht &ouml;ffnen </code><br>
 Das Programm konnte die serielle Schnittstelle nicht &ouml;ffnen. Pr&uuml;fen
-Sie, ob die Serielle Schnittstelle im Betriebssystem eingerichtet ist und ob sie
+Sie, ob die serielle Schnittstelle im Betriebssystem eingerichtet ist und ob sie
 in der Programmkonfiguration richtig angegeben wurde. Unter LINUX sind ggf. 
 spezielle Benutzerberechtigungen, wie z.B. die Zugeh&ouml;rigkeit zu einer
 Gruppe <code>dialout</code> notwendig.</p>
+
+<p><code>Kann nicht von serieller Schnittstelle lesen</code><br>
+<code>Kann nicht auf serielle Schnittstelle schreiben</code><br>
+<code>Flush input auf serieller Schnittstelle fehlgeschlagen</code><br>
+<code>Kann serielle Schnittstelle nicht schlie&szlig;en</code><br>
+Die serielle Schnittstelle konnte zwar ge&ouml;ffnet werden, aber die 
+Ein-Ausgabeoperationen sind fehlgeschlagen. &Uuml;berpr&uuml;fen Sie, ob Sie die richtige 
+Schnittstelle in der Konfiguration angegeben haben und ob Sie die Berechtigungen
+f&uuml;r Lese- und Schreiboperationen besitzen.</p>
+</p>
+
+<p><code>Timeout beim Lesen von serieller Schnittstelle</code><br>
+<code>Konnte keinen String von serieller Schnittstelle lesen</code><br>
+<code>Ger&auml;t nicht gefunden</code><br>
+<code>Befehls&uuml;bermittlung fehlgeschlagen</code><br>
+<code>Kann Kanalkonfiguration nicht abfragen</code><br>
+<code>Kann Messwerte nicht lesen</code><br>
+Das an der seriellen Schnittstelle angeschlossene ALC 7000 antwortet nicht.
+&Uuml;berpr&uuml;fen Sie die Verbindung und ob das ALC 7000 eingeschaltet ist.
+</p>
+
+<p><code>Kann Kanal nicht deaktivieren</code><br>
+<code>Kann neue Kanaleinstallung nicht vornehmen</code><br>
+<code>Kann Ladeprogramm nicht einstellen</code><br>
+<code>Kann Ladeprogramm nicht starten</code><br>
+<code>Kann Ladeprogramm nicht beenden</code><br>
+Es liegt eine Kommunikationsst&ouml;rung zwischen dem Rechner und dem ALC 7000 vor.
+&Uuml;berpr&uuml;fen Sie die Verbindung und ob das ALC 7000 eingeschaltet ist.
+</p>
+
+<p><code>Kann nicht auf Arbeitsverzeichnis wechseln</code><br>
+<code>Kann Logdatei nicht &ouml;ffnen</code><br>
+<code>Kann nicht auf Logdatei schreiben</code><br>
+<code>Kann Logdatei nicht abschlie&szlig;en</code><br>
+<code>Zugriff auf Messwertdatei fehlgeschlagen</code><br>
+<code>Kann nicht auf Logdatei schreiben</code><br>
+<code>Kann Logdatei nicht abschlie&szlig;en</code><br>
+Die Log- und Messwertdatei werden im Arbeitsverzeichnis angelegt. Pr&uuml;fen Sie, ob das Arbeitsverzeichnis existiert und ob dort Schreib- und Leserechte f&uuml;r das
+Programm pyALC7T vorhanden sind.
+</p>
+
+<p><code>Kann das Verzeichnis f&uuml;r die Konfigurationsdatei nicht anlegen</code><br>
+<code>Kann die Konfigurationsdatei nicht anlegen</code><br>
+<code>Konfigurationsdatei kann nicht geschrieben werden</code><br>
+<p><code>Konfigurationsdatei kann nicht gelesen werden</code><br>
+Pr&uuml;fen Sie, ob das Verzeichnis (siehe oben) existiert, in dem die 
+Konfigurationsdatei von pyALC7T angelegt wird, existiert und ob dort Schreib- und 
+Leserechte f&uuml;r das Programm pyALC7T vorhanden sind. 
+</p>
+
+<p><code>Kann Konfiguration nicht in JSON umwandeln.</code><br>
+Interner Fehler, wenden Sie sich bitte an den Autor.</p>
+</p>
+
+<p><code>Konfigurationsdatei kann nicht dekodiert werden</code><br>
+Die pyALC7T Konfigurationsdatei enth&auml;lt ung&uuml;ltige Informationen. L&ouml;schen
+Sie die Datei und starten das Programm erneut.</p>
+
+<p><code>Konfigurationsparameter nicht gefunden</code><br>
+Interner Fehler, wenden Sie sich an den Autor.</p>
+
+
+<p><code>Kanalkonfiguration kann nicht dekodiert werden</code><br>
+<code>Kanalkonfiguration kann nicht geladen werden</code><br>
+<code>Kanalkonfiguration kann nicht in JSON umgewandelt werden</code><br>
+<code>Kanalkonfiguration kann nicht gespeichert werden</code><br>
+<code>Kanalkonfiguration kann nicht eingestellt werden</code><br>
+Pr&uuml;fen Sie bitte, ob in dem Verzeichnis, in dem die Kanalkonfiguration gespeichert
+oder aus dem diese gelesen wird, Schreib- und Leserechte f&uuml;r pyALC7T bestehen.
+</p>
+
+<p><code>Die Python bindings f&uuml;r QtWebKit oder QtWebEngine fehlen. Die Online-Hilfe kann nicht angezeigt werden.</code><br>
+Die angegebenen Qt- bzw. Python Softwarekomponenten fehlen. Bitte installieren Sie entweder QtWebKit oder QtWebEngine und die betreffenden Python-Bindings nach.</p>
+
 
 <h3 class="w3-text-teal">Fehlersuche bei Programmabst&uuml;rzen</h3>
 
