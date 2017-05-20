@@ -34,6 +34,8 @@
 # - Fehlermeldungen verbessert
 # 14.05.2017 jsi
 # - Fehlermeldungen eingedeutscht
+# 20.05.2017 jsi:
+# - fehlerhafter Aufruf von QMessagebox behoben
 #
 import os
 import glob
@@ -1014,8 +1016,8 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
          return
       s=flist[0]
       if os.access(s,os.W_OK):
-         reply=QtGui.QMessageBox.warning(self,'Warnung',"Möchten Sie folgende Datei überschfreiben: "+s,QtGui.QMessageBox.Ok,QtGui.QMessageBox.Cancel)
-         if reply== QtGui.QMessageBox.Cancel:
+         reply=QtWidgets.QMessageBox.warning(self,'Warnung',"Möchten Sie folgende Datei überschfreiben: "+s,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Cancel)
+         if reply== QtWidgets.QMessageBox.Cancel:
             return
 
       try:
