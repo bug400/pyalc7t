@@ -37,7 +37,7 @@
 # 20.05.2017 jsi:
 # - fehlerhafter Aufruf von QMessagebox behoben
 # 21.05.2017 jsi:
-# - Save file dialog korrigiert
+# - Save file dialog korrigiert, Feld Beschreibung entfernt
 #
 import os
 import glob
@@ -429,7 +429,7 @@ class cls_KanalWidget(QtWidgets.QFrame):
       self.vbox.addWidget(self.lh)
       self.vbox.addSpacing(10)
 
-      for i in range(8):
+      for i in range(7):
          self.conflabels[i]= self.lp=QtWidgets.QLabel("")
          self.conflabels[i].setAlignment(QtCore.Qt.AlignRight)
          self.vbox.addWidget(self.conflabels[i])
@@ -464,7 +464,7 @@ class cls_KanalWidget(QtWidgets.QFrame):
       self.conflabels[4].setText("-.---- Ah")
       self.conflabels[5].setText("-.--- A")
       self.conflabels[6].setText("-.--- A")
-      self.conflabels[7].setText("-")
+#     self.conflabels[7].setText("-")
 #
 #  Konfiguration im GUI anzeigen
 #
@@ -476,7 +476,7 @@ class cls_KanalWidget(QtWidgets.QFrame):
       self.conflabels[4].setText(cnenn)
       self.conflabels[5].setText(ilad)
       self.conflabels[6].setText(ientlad)
-      self.conflabels[7].setText(beschreibung)
+#     self.conflabels[7].setText(beschreibung)
 #
 #  Messwerte im GUI zurücksetzen
 #
@@ -594,7 +594,6 @@ class cls_ui(QtWidgets.QMainWindow):
       self.vlbox.addWidget(QtWidgets.QLabel("Nennkapazität"))
       self.vlbox.addWidget(QtWidgets.QLabel("Ladestrom"))
       self.vlbox.addWidget(QtWidgets.QLabel("Entladestrom"))
-      self.vlbox.addWidget(QtWidgets.QLabel("Beschreibung"))
       
       self.vlbox.addSpacing(10)
       self.mw=QtWidgets.QLabel("Messwerte")
@@ -703,7 +702,6 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       self.gridLayout2.addWidget(QtWidgets.QLabel("Nennkapazität (Ah)"),4,0)
       self.gridLayout2.addWidget(QtWidgets.QLabel("Ladestrom (A)"),5,0)
       self.gridLayout2.addWidget(QtWidgets.QLabel("Entladestrom (A)"),6,0)
-      self.gridLayout2.addWidget(QtWidgets.QLabel("Beschreibung"),7,0)
 
       self.comboBox_akkutyp = QtWidgets.QComboBox()
       self.gridLayout2.addWidget(self.comboBox_akkutyp,1,1)
@@ -724,8 +722,6 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       self.lineEdit_Entladestrom = QtWidgets.QLineEdit()
       self.gridLayout2.addWidget(self.lineEdit_Entladestrom,6,1)
 
-      self.lineEdit_Beschreibung = QtWidgets.QLineEdit()
-      self.gridLayout2.addWidget(self.lineEdit_Beschreibung,7,1)
 #
 #     Buttown Spalte
 #

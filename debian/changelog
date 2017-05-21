@@ -1,3 +1,9 @@
+pyalc7t (1.0.0~beta2) xenial; urgency=medium
+
+  * beta 2 
+
+ -- wily <achim@trillian>  Sun, 21 May 2017 10:02:46 +0200
+
 pyalc7t (1.0.0~beta1) xenial; urgency=low
 
   * Initial release, beta 1
