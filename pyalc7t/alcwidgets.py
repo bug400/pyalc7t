@@ -36,6 +36,8 @@
 # - Fehlermeldungen eingedeutscht
 # 20.05.2017 jsi:
 # - fehlerhafter Aufruf von QMessagebox behoben
+# 21.05.2017 jsi:
+# - Save file dialog korrigiert
 #
 import os
 import glob
@@ -1003,7 +1005,8 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
    def getKanalConfigOutputFileName(self):
       dialog=QtWidgets.QFileDialog()
       dialog.setWindowTitle("pyALC7T Kanalkonfigurationsdatei")
-      dialog.setAcceptMode(QtWidgets.QFileDialog.AcceptOpen)
+      dialog.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
+      dialog.setDefaultSuffix(".alc")
       dialog.setFileMode(QtWidgets.QFileDialog.AnyFile)
       dialog.setNameFilters(["Kanalkonfiguration (*.alc)"])
       dialog.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
