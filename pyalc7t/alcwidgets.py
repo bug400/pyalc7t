@@ -38,6 +38,8 @@
 # - fehlerhafter Aufruf von QMessagebox behoben
 # 21.05.2017 jsi:
 # - Save file dialog korrigiert, Feld Beschreibung entfernt
+# 25.05.2017 jsi:
+# - Bugfix Feld Beschreibung entfernt
 #
 import os
 import glob
@@ -779,7 +781,6 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       self.lineEdit_Entladestrom.setInputMask("0.00")
       self.lineEdit_Entladestrom.editingFinished.connect(self.do_lineEdit_Entladestrom)
 
-      self.lineEdit_Beschreibung.editingFinished.connect(self.do_lineEdit_Beschreibung)
       self.update_gui()
 #
 #  Action-Script: Spin Box Anzahl Zellen geändert ---
@@ -872,7 +873,6 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       self.lineEdit_Nennkapazitaet.setText("%5.3f" % self.config['CNenn'])
       self.lineEdit_Ladestrom.setText("%5.3f" % self.config['ILad'])
       self.lineEdit_Entladestrom.setText("%5.3f" % self.config['IEntl'])
-      self.lineEdit_Beschreibung.setText("%s" % self.config['Beschreibung'])
       self.spinBox_Zellenzahl.setValue(self.config['AnzZellen'])
       self.lbl_titel.setText("Konfiguration für Kanal %d" % self.kanalnr)
       if self.geprueft :
