@@ -33,6 +33,8 @@
 # - Fehlerbehandlung verbessert
 # 31.03.2017 jsi
 # - Kanalstatus wird jetzt richtig verarbeitet
+# 28.05.2017 jsi
+# - Update Tabelle/Plot per Signal
 #
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -47,9 +49,12 @@ from .alccore import *
 #
 # Objektklasse für die Kanäle -----------------------------------------------------
 #
-class cls_kanal(object):
+class cls_kanal(QtCore.QObject):
+
+   sig_refresh= QtCore.pyqtSignal()
 
    def __init__(self, alc7t, kanalnr):
+      super().__init__()
       self.kanalnummer = kanalnr
       self.ui= alc7t.ui
       self.alc7t= alc7t
@@ -490,6 +495,7 @@ class cls_kanal(object):
             raise KanalError('Kann nicht auf Logdatei schreiben',e.strerror)
 
       self.show_mess()
+      self.sig_refresh.emit()
 #
 #        Messprogrammende, Dateien schliessen
 #
@@ -753,7 +759,6 @@ class cls_kanal(object):
    def do_messwerte(self):
       if self.PlotDialog== None:
          self.PlotDialog= cls_PlotDialog(self)
-      self.PlotDialog.refresh()
-      self.PlotDialog.start_timer()
       self.PlotDialog.show()
+      self.sig_refresh.emit()
 

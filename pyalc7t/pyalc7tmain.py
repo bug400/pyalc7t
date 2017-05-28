@@ -31,6 +31,8 @@
 # - Fehlermeldungen verbessert
 # 14.05.2017 jsi
 # - Fehlermeldungen eingedeutscht
+# 28.05.2017 jsi
+# - Plotgröße konfigurierbar
 #
 #
 import os
@@ -101,6 +103,7 @@ class cls_alc7t(QtCore.QObject):
          ALCCONFIG.get(self.name,"tty","")
          ALCCONFIG.get(self.name,"workdir", os.path.expanduser('~'))
          ALCCONFIG.get(self.name,"gnuplot", "")
+         ALCCONFIG.get(self.name,"plotsize", 400)
          ALCCONFIG.get(self.name,"version","0.0.0")
          ALCCONFIG.get(self.name,"position","")
          ALCCONFIG.get(self.name,"helpposition","")

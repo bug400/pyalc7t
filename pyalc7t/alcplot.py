@@ -30,6 +30,8 @@
 # - erste Version
 # 20.03.17 jsi
 # - tabellen/zellengröße verbessert
+# 28.03.17 - jsi
+# Layoutfehler beseitigt, Auffrischen Tabelle/Plot per Signal, Plotgröße konfigurierbar
 #
 import os
 import time 
@@ -60,6 +62,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
 
    def __init__(self,kanal):
       self.gnuplot=ALCCONFIG.get("pyalc7t","gnuplot")
+      self.plotsize=ALCCONFIG.get("pyalc7t","plotsize")
       super().__init__()
       self.vlayout=QtWidgets.QVBoxLayout()
       self.vlayout.setContentsMargins(20, 20, 20, 20)
@@ -103,7 +106,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
       metrics= QtGui.QFontMetrics(self.dataFont)
       item_width= metrics.width(" 00:00:0000 ")
       self.table.horizontalHeader().setDefaultSectionSize(item_width+2)
-      self.table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Fixed)
+      self.table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 #
 #     kein Vertical Header
 #
@@ -122,6 +125,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
 #
       if self.gnuplot != "":
          self.lblPlot = QtWidgets.QLabel(self)
+         self.lblPlot.setFixedWidth(self.plotsize)
          self.hlayout.addWidget(self.lblPlot)
       self.vlayout.addLayout(self.hlayout)
 
@@ -146,27 +150,20 @@ class cls_PlotDialog(QtWidgets.QDialog):
       self.anzmess=0
       self.rowcount=0
       self.fromfile= False
+      self.sig_refresh= kanal.sig_refresh
+      self.sig_refresh.connect(self.refresh,QtCore.Qt.QueuedConnection)
 #
 #     Messwertdatei: Logdatei des Kanals, plotdatei: von GNUPLOT erzeugte Grafik
 #
       self.messwertdatei="0_kanal%d.amw" % self.kanalnr
       self.plotdatei="0_kanal%d.png" % self.kanalnr
-#
-#     Timer einrichten
-#
-      self.timer = QtCore.QTimer()
-      self.timer.timeout.connect(self.refresh)
 
 #
-#  Timer aktivieren für den Refresh von Messwertanzeige und Plot
-#
-   def start_timer(self):
-      self.timer.start(12000)
-
-#
-#  Timer Routine: Messwerte anzeigen, Plot erstellen
+#  Signal Routine: Messwerte anzeigen, Plot erstellen
 #
    def refresh(self):
+      if not self.isVisible():
+         return
       try:
 #
 #        alte Plotdatei löschen
@@ -242,7 +239,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
                         universal_newlines=True,
                         stdin=subprocess.PIPE,
                         )
-         proc.stdin.write("set term png size 400,400\n")
+         proc.stdin.write("set term png size %d,%d\n" % (self.plotsize,self.plotsize))
          proc.stdin.write("set output \"%s\"\n" %self.plotdatei)
          proc.stdin.write("set size 1.0,0.5\n")
          proc.stdin.write("set origin 0,0.5\n")
@@ -276,7 +273,6 @@ class cls_PlotDialog(QtWidgets.QDialog):
 #  Action Script: Fenster schließen ---
 #
    def do_exit(self):
-      self.timer.stop()
       self.close()
       self=None
 
