@@ -131,7 +131,7 @@ dann mit der kontinuierlichen Abfrage und Anzeige der Messwerte der 4 Kanäle.
 Bedienung
 ---------
 
-Die Bedienung von pyALC7T ist im Online Manual beschrieben (zur Zeit in Erstellung).
+Die Bedienung von pyALC7T ist im Online Manual beschrieben.
 
 
 Installation ohne die ANACONDA Plattform
@@ -142,7 +142,7 @@ Die oben genannte Python Laufzeitumgebung muss auf dem Rechner installiert sein.
 Bei LINUX Systemen, die auf Debian basieren kann die .deb Datei von pyALC7T installiert
 werden.
 
-Bei allen anderen Systemen entpacke Sie den pyALC7T Quellcode, gehen in das
+Bei allen anderen Systemen entpacken Sie den pyALC7T Quellcode, gehen in das
 pyalc7t Verzeichnis und geben folgenden Befehl 
 
      python3 setup.py install
@@ -163,5 +163,5 @@ ausführen.
 
 Bitte beachten Sie:
 * Entwicklungsversionen sind ein "Schnappschuss" laufender Entwicklungsarbeiten. Sie sind
-  nicht durchgreifend getestet, können abstürzen und schlimmstenfalls zu Datenverlusten
+  nicht durchgreifend getestet, können abstürzen und schlimmstenfalls zu Datenverlusten führen
 * Entwicklungsversionen verwenden nicht die Programmkonfiguration von Produktionsversionen und können daher parallel zu diesen verwendet werden.

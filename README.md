@@ -19,8 +19,8 @@ NiCd, NIMH and Lead-Acid batteries. pyALC7T controls this device and logs measur
 over a serial RS232 connection. pyALC7T is entirely written in Python3 using the
 Qt framework. It was tested on LINUX, Windows 10 and Mac OS.
 
-Because Ido not known whether the charger has been used outside of Germany, the software
-and the documentation is in German.
+Because I do not known whether the charger has been used outside of Germany, the 
+software and the documentation is entirely in German.
 
 pyALC7T is a reengineered version of the BASIC program 
 [Alc7t](http://www.franksteinberg.de/alc7t.htm) (c) Frank Steinberg 2006.
@@ -30,7 +30,7 @@ Beschreibung
 ------------
 pyALC7T ist ein Steuerprogramm und Datenlogger für das Ladegerät ALC7000 Expert
 der Firma ELV Elektronik AG. Das Ladegerät ALC 7000 Expert verfügt über vier Kanäle,
-mit denen NiCd, NiMhund Blei-Akkus geladen werden können. Das Gerät verfügt über eine
+mit denen NiCd, NiMh und Blei-Akkus geladen werden können. Das Gerät verfügt über eine
 RS-232 Schnittstelle, über die das Ladegerät gesteuert wird und mit der die
 Messwerte der vier Kanäle ausgelesen werden.
 
@@ -45,7 +45,7 @@ Eigenschaften
 * Alle Funktionen des ALC 7000 Expert können über die Benutzeroberfläche gesteuert
   werden
 * Anzeige und Aufzeichnung der Messwerte für alle Kanäle als Textdatei
-+ Verwaltung von Akkukonfigurationen (Typ, Anzahl Zellen, Ladestrom, Entladestrom,
+* Verwaltung von Akkukonfigurationen (Typ, Anzahl Zellen, Ladestrom, Entladestrom,
   Nennspannung, Nennkapazität, Ladestrom, Entladestrom)
 * Anzeige von Spannung und Strom als Liniengrafik während oder nach der Aufzeichnung
 * Anzeige der Delta-Peak Spannung und geladener Kapazität
