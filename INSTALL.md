@@ -5,7 +5,7 @@ Index
 -----
 
 * [Allgemeines](#allgemeines)
-* [Installation mit der Anaconda ](#installation-mit-anaconda)
+* [Installation mit der Anaconda Plattform](#installation-mit-der-anaconda-plattform)
 * [Installation von GNUPLOT](#installation-von-gnuplot)
 * [Einrichtung von pyALC7T](#einrichtung-von-pyalc7t)
 * [Bedienung](#bedienung)
@@ -34,8 +34,8 @@ Der Rechner muss mit einer RS232 Schnittstelle ausgestattet sein. Diese kann bei
 Rechnersystemen über einen USB-RS232 Adapter nachgerüstet werden. 
 
 
-Installation mit ANACONDA
--------------------------
+Installation mit der ANACONDA Plattform
+---------------------------------------
 
 Für die Installation von pyALC7T und der Python Laufzeitumgebung werden rund
 700 MB freier Speicherplatz benötigt. Die Installation kann lokal erfolgen und 
