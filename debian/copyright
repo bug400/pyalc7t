@@ -1,7 +1,7 @@
 Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=455
 
 Upstream-Name: pyalc7t
-Upstream-Maintainer: Joachim Siebold <jsi150@gmx.de>
+Upstream-Maintainer: Joachim Siebold <bug400@gmx.de>
 
 Files: *
 Copyright: Copyright 2011, Harald Sitter <apachelogger@ubuntu.com>
