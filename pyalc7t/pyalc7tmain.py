@@ -32,7 +32,9 @@
 # 14.05.2017 jsi
 # - Fehlermeldungen eingedeutscht
 # 28.05.2017 jsi
-# - Plotgröße konfigurierbar
+# - Diagrammgröße konfigurierbar
+# 21.06.2017 jsi
+# - negative Fensterpositionen werden auf 0 gesetzt
 #
 #
 import os
@@ -270,7 +272,14 @@ class cls_alc7t(QtCore.QObject):
 #
    def do_Exit(self):
       self.disable()
-      position=[self.ui.pos().x(),self.ui.pos().y()]
+      pos_x=self.ui.pos().x()
+      pos_y=self.ui.pos().y()
+      if pos_x < 0:
+         pos_x=0
+      if pos_y < 0:
+         pos_y=0
+      
+      position=[pos_x, pos_y]
       ALCCONFIG.put(self.name,"position",position)
       if self.helpwin!= None:
          helpposition=[self.helpwin.pos().x(),self.helpwin.pos().y(),self.helpwin.width(),self.helpwin.height()]

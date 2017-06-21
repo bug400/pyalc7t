@@ -40,6 +40,8 @@
 # - Save file dialog korrigiert, Feld Beschreibung entfernt
 # 25.05.2017 jsi:
 # - Bugfix Feld Beschreibung entfernt
+# 21.06.2017 jsi:
+# - Diagrammgröße konfigurierbar
 #
 import os
 import glob
@@ -268,6 +270,7 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       self.__tty__= ALCCONFIG.get(self.__name__,"tty")
       self.__workdir__= ALCCONFIG.get(self.__name__,"workdir")
       self.__gnuplot__= ALCCONFIG.get(self.__name__,"gnuplot")
+      self.__plotsize__= ALCCONFIG.get(self.__name__,"plotsize")
 
 
       self.win = QtWidgets.QWidget()
@@ -338,6 +341,22 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       self.vboxgboxg.addLayout(self.hboxgdir)
       self.vbox0.addWidget(self.gboxg)
 #
+#     Plotsize
+#
+      self.gboxp = QtWidgets.QGroupBox()
+      self.gboxp.setFlat(True)
+      self.gboxp.setTitle("Diagrammgröße")
+      self.spinplotsize=QtWidgets.QSpinBox()
+      self.spinplotsize.setMinimum(300)
+      self.spinplotsize.setMaximum(600)
+      self.spinplotsize.setValue(self.__plotsize__)
+      self.hboxp= QtWidgets.QHBoxLayout()
+#     self.hboxp.addStretch(1)
+      self.hboxp.addWidget(self.spinplotsize)
+#     self.hboxp.addStretch(1)
+      self.gboxp.setLayout(self.hboxp)
+      self.vbox0.addWidget(self.gboxp)
+#
 #     ok/cancel buttons
 #
 
@@ -393,6 +412,7 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       ALCCONFIG.put(self.__name__,"tty", self.lbltty.text())
       ALCCONFIG.put(self.__name__,"workdir",self.lblwdir.text())
       ALCCONFIG.put(self.__name__,"gnuplot",self.lblgdir.text())
+      ALCCONFIG.put(self.__name__,"plotsize",self.spinplotsize.value())
       super().accept()
 
    def do_cancel(self):
