@@ -351,9 +351,9 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       self.spinplotsize.setMaximum(600)
       self.spinplotsize.setValue(self.__plotsize__)
       self.hboxp= QtWidgets.QHBoxLayout()
-#     self.hboxp.addStretch(1)
+      self.hboxp.addStretch(1)
       self.hboxp.addWidget(self.spinplotsize)
-#     self.hboxp.addStretch(1)
+      self.hboxp.addStretch(1)
       self.gboxp.setLayout(self.hboxp)
       self.vbox0.addWidget(self.gboxp)
 #
