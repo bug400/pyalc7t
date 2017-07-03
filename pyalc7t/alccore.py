@@ -72,8 +72,8 @@ FONT_BIG.setBold(True)
 #
 # Programmkonstanten ----------------------------------------------------------------
 #
-PRODUCION= False      # Production/Development Version
-VERSION="1.0.0~beta4"       # pyalc7t version number
+PRODUCION= True       # Production/Development Version
+VERSION="1.0.0"       # pyalc7t version number
 CONFIG_VERSION="1"    # Version number of alc7t config file, must be string
 
 #

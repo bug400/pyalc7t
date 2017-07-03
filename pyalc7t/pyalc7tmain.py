@@ -35,6 +35,8 @@
 # - Diagrammgröße konfigurierbar
 # 21.06.2017 jsi
 # - negative Fensterpositionen werden auf 0 gesetzt
+# 30.6.2017 jsi
+# - minimale Fensterposition (50,50)
 #
 #
 import os
@@ -274,10 +276,10 @@ class cls_alc7t(QtCore.QObject):
       self.disable()
       pos_x=self.ui.pos().x()
       pos_y=self.ui.pos().y()
-      if pos_x < 0:
-         pos_x=0
-      if pos_y < 0:
-         pos_y=0
+      if pos_x < 50:
+         pos_x=50
+      if pos_y < 50:
+         pos_y=50
       
       position=[pos_x, pos_y]
       ALCCONFIG.put(self.name,"position",position)
