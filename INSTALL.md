@@ -10,6 +10,7 @@ Index
 * [Einrichtung von pyALC7T](#einrichtung-von-pyalc7t)
 * [Bedienung](#bedienung)
 * [Installation ohne die ANACONDA Plattform](#installation-ohne-die-anaconda-plattform)
+* [Installation unter RASPBIAN](#installation-unter-raspbian)
 * [Installation von Entwicklungsversionen](#installation-von-entwicklungsversionen)
 
 
@@ -148,6 +149,18 @@ pyalc7t Verzeichnis und geben folgenden Befehl
      python3 setup.py install
 
 in einem Terminal- oder Konsolefenster ein.
+
+Installation unter RASPBIAN
+---------------------------
+
+Der Raspberry Pi ist für den Einsatz von pyALC7T gut geeignet. Für die Installation
+muss das Debian Paket für RASPIAN verwendet werden (siehe [Releases](https://github.com/bug400/pyalc7t/releases)). Laden sie das Debian Paket herunter und installieren
+es als root mit folgenden Befehlen:
+
+    dpkg -i pyalc7t_x.y.z_raspian_all.deb
+    apt-get -f install
+
+Der zweite Befehl installiert die von pyALC7T noch zusätzlich benötigten Pakete.
 
 
 Installation von Entwicklungsversionen
