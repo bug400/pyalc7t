@@ -1,3 +1,9 @@
+pyalc7t (1.0.1) bionic; urgency=medium
+
+  * Wartezeit zwischen Messungen implementiert 
+
+ -- wily <achim@marvin>  Tue, 06 Nov 2018 17:40:51 +0100
+
 pyalc7t (1.0.0) xenial; urgency=low
 
   * Initial release

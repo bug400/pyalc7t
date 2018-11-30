@@ -28,7 +28,6 @@
 # 06.02.2017 Ersterstellung
 #
 from PyQt5 import QtCore
-import time
 from .alccore import *
 from .alckanal import KanalError
 

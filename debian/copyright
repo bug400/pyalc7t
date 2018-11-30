@@ -3,10 +3,6 @@ Format-Specification: http://wiki.debian.org/Proposals/CopyrightFormat?action=re
 Upstream-Name: pyalc7t
 Upstream-Maintainer: Joachim Siebold <bug400@gmx.de>
 
-Files: *
-Copyright: Copyright 2011, Harald Sitter <apachelogger@ubuntu.com>
-License: GPL-3+
-
 License: GPL-3+
  On Debian systems the full text of the GNU General Public License can be found
  in the `/usr/share/common-licenses/GPL' file.

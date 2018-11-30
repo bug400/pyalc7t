@@ -59,8 +59,8 @@ class cls_rs232(object):
          self.__isOpen__= True
          time.sleep(0.5)
       except:
-          raise Rs232Error('Kann serielle Schnittstelle '+self.__device__+' nicht öffnen')
           self.__device__=""
+          raise Rs232Error('Kann serielle Schnittstelle '+self.__device__+' nicht öffnen')
 #
 #  Kommunikation abbauen
 #

@@ -31,12 +31,11 @@
 # - Fehlermeldung eingedeutscht
 #
 from .userconfig import cls_userconfig, ConfigError
-from .alccore import CONFIG_VERSION
 
 
 class AlcConfigError(Exception):
    def __init__(self,msg,add_msg= None):
-      self.msg= msg;
+      self.msg= msg
       self.add_msg = add_msg
 
 

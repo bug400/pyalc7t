@@ -35,13 +35,16 @@
 # - Kanalstatus wird jetzt richtig verarbeitet
 # 28.05.2017 jsi
 # - Update Tabelle/Plot per Signal
+# 06.11.2018 jsi
+# - delay bei Messung implementiert
 #
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 import datetime
 import os
 import time
 from .alcwidgets import cls_KanalWidget, cls_KanalConfigWindow, cls_AlcMessageBox
+from .alcconfig import ALCCONFIG
 from .alcplot import cls_PlotDialog
 from .alcrs232 import Rs232Error
 from .alccore import *
@@ -58,6 +61,7 @@ class cls_kanal(QtCore.QObject):
       self.kanalnummer = kanalnr
       self.ui= alc7t.ui
       self.alc7t= alc7t
+      self.delay=0
       self.rs232=None
 #
 #     Menü erzeugen
@@ -214,6 +218,7 @@ class cls_kanal(QtCore.QObject):
 #
    def enable(self):
       self.reset_vars()
+      self.delay= ALCCONFIG.get("pyalc7t","delay")
       self.ui.emit_message("Lese Konfiguration für Kanal "+str(self.kanalnummer))
       self.readconfig() # throws KanalError
       self.status= STAT_ENABLED
@@ -357,6 +362,7 @@ class cls_kanal(QtCore.QObject):
 #
    def messung(self):
       kanalnr=self.kanalnummer
+      time.sleep(self.delay)
       self.ui.emit_message("Lese Messwerte für Kanal "+str(self.kanalnummer))
       try:    
 #
@@ -543,7 +549,7 @@ class cls_kanal(QtCore.QObject):
          l.write("# Messwerte\n")
          l.write("# Zeit [Sek] Spannung [V] Strom [A]\n")
       except EnvironmentError:
-         f.close()
+         l.close()
          raise
         
 #
@@ -730,6 +736,7 @@ class cls_kanal(QtCore.QObject):
          QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
          reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht starten: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+         return
       self.KanStatus=p
       self.config_menu()
       self.alc7t.commthread.resume()
@@ -750,6 +757,7 @@ class cls_kanal(QtCore.QObject):
          QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
          reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht beenden: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
+         return
       self.KanStatus=p
       self.config_menu()
       self.alc7t.commthread.resume()

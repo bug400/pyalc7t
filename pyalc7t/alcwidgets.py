@@ -42,16 +42,16 @@
 # - Bugfix Feld Beschreibung entfernt
 # 21.06.2017 jsi:
 # - Diagrammgröße konfigurierbar
+# 06.11.2018 jsi:
+# - Pause zwischen Messungen konfigurierbar
 #
 import os
 import glob
 import sys
-import platform
 import re
-import pickle
 import json
 import pyalc7t
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from .alccore import *
 from .alcconfig import ALCCONFIG
 if isWINDOWS():
@@ -237,7 +237,6 @@ class cls_TtyWindow(QtWidgets.QDialog):
       super().accept()
 
    def do_cancel(self):
-      self.__device__==""
       super().reject()
 
 
@@ -271,6 +270,7 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       self.__workdir__= ALCCONFIG.get(self.__name__,"workdir")
       self.__gnuplot__= ALCCONFIG.get(self.__name__,"gnuplot")
       self.__plotsize__= ALCCONFIG.get(self.__name__,"plotsize")
+      self.__delay__= ALCCONFIG.get(self.__name__,"delay")
 
 
       self.win = QtWidgets.QWidget()
@@ -319,6 +319,22 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       self.hboxwdir.setAlignment(self.butwdir,QtCore.Qt.AlignRight)
       self.vboxgboxw.addLayout(self.hboxwdir)
       self.vbox0.addWidget(self.gboxw)
+#
+#     Messwert delay
+#
+      self.gboxd = QtWidgets.QGroupBox()
+      self.gboxd.setFlat(True)
+      self.gboxd.setTitle("Wartezeit zwischen Messungen")
+      self.spindelay=QtWidgets.QSpinBox()
+      self.spindelay.setMinimum(0)
+      self.spindelay.setMaximum(5)
+      self.spindelay.setValue(self.__delay__)
+      self.hboxd= QtWidgets.QHBoxLayout()
+      self.hboxd.addStretch(1)
+      self.hboxd.addWidget(self.spindelay)
+      self.hboxd.addStretch(1)
+      self.gboxd.setLayout(self.hboxd)
+      self.vbox0.addWidget(self.gboxd)
 #
 #     Gnuplot Path
 #
@@ -413,6 +429,7 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       ALCCONFIG.put(self.__name__,"workdir",self.lblwdir.text())
       ALCCONFIG.put(self.__name__,"gnuplot",self.lblgdir.text())
       ALCCONFIG.put(self.__name__,"plotsize",self.spinplotsize.value())
+      ALCCONFIG.put(self.__name__,"delay",self.spindelay.value())
       super().accept()
 
    def do_cancel(self):
@@ -932,8 +949,8 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       if  flist == None:
          return
       s=flist[0]
+      f= None
       try:
-         f=None
          f= open(s,"r")
          self.config= json.load(f)
       except json.JSONDecodeError as e:
@@ -941,7 +958,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       except OSError as e:
          reply=QtWidgets.QMessageBox.critical(self,'Fehler',"Kanalkonfiguration kann nicht geladen werden. "+e.strerror,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       finally:
-         if f != None:
+         if f is not None:
             f.close()
       self.update_gui()
 #
@@ -1038,9 +1055,8 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
          reply=QtWidgets.QMessageBox.warning(self,'Warnung',"Möchten Sie folgende Datei überschfreiben: "+s,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Cancel)
          if reply== QtWidgets.QMessageBox.Cancel:
             return
-
+      f= None
       try:
-         f= None
          f= open(s,"w")
          json.dump(self.config,f,sort_keys=True,indent=3)
       except json.JSONDecodeError as e:
@@ -1048,7 +1064,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
       except OSError as e:
          reply=QtWidgets.QMessageBox.critical(self,'Fehler',"Kanalkonfiguration kann nicht gespeichert werden."+e.strerror,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       finally:
-         if f != None:
+         if f is not None:
             f.close()
 
 #

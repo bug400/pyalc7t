@@ -37,17 +37,20 @@
 # - negative Fensterpositionen werden auf 0 gesetzt
 # 30.6.2017 jsi
 # - minimale Fensterposition (50,50)
+# 06.11.2018 jsi
+# - Konfigurationsparameter delay eingeführt
 #
 #
 import os
 import sys
 import argparse
 import signal
+import traceback
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from .alccore import *
 from .alcrs232 import cls_rs232, Rs232Error
-from .alcconfig import cls_alcconfig, AlcConfigError, ALCCONFIG
+from .alcconfig import AlcConfigError, ALCCONFIG
 from .alckanal import cls_kanal
 from .alcthread import cls_AlcThread
 from .alcwidgets import cls_ui, cls_AboutWindow, cls_HelpWindow, HelpError,cls_AlcConfigWindow
@@ -111,6 +114,7 @@ class cls_alc7t(QtCore.QObject):
          ALCCONFIG.get(self.name,"version","0.0.0")
          ALCCONFIG.get(self.name,"position","")
          ALCCONFIG.get(self.name,"helpposition","")
+         ALCCONFIG.get(self.name,"delay",2)
          ALCCONFIG.save()
       except AlcConfigError as e:
          reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+': '+e.add_msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
@@ -168,10 +172,10 @@ class cls_alc7t(QtCore.QObject):
       try:
          os.chdir(ALCCONFIG.get(self.name,"workdir"))
       except EnvironmentError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann nicht auf Arbeitsverzeichnis wechseln: "+e.sterror,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann nicht auf Arbeitsverzeichnis wechseln ",QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          return
       except TypeError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann nicht auf Arbeitsverzeichnis wechseln: "+e.sterror,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann nicht auf Arbeitsverzeichnis wechseln",QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          return
 #
 #     Verbindung zu ALC7000 aufbauen
@@ -198,7 +202,7 @@ class cls_alc7t(QtCore.QObject):
       self.commthread.start()
       self.status= STAT_ENABLED
 #
-#   alc7t disabledn
+#   alc7t disablen
 #
    def disable(self):
       if self.status== STAT_DISABLED:
@@ -260,7 +264,7 @@ class cls_alc7t(QtCore.QObject):
          try:
             ALCCONFIG.save()
          except AlcConfigError as e:
-            reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+            reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
             return
          self.enable()
 #
@@ -289,7 +293,7 @@ class cls_alc7t(QtCore.QObject):
       try:
          ALCCONFIG.save()
       except AlcConfigError as e:
-         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QTGui.QMessageBox.Ok)
+         reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',e.msg+": "+e.add_msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       QtWidgets.QApplication.quit()
 #
 #     callback show about window

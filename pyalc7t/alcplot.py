@@ -34,13 +34,12 @@
 # Layoutfehler beseitigt, Auffrischen Tabelle/Plot per Signal, Plotgröße konfigurierbar
 #
 import os
-import time 
 import subprocess
 import datetime
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from .alcconfig import ALCCONFIG, AlcConfigError
-from .alccore import FONT_BIG, FONT_NORMAL
+from .alcconfig import ALCCONFIG
+from .alccore import FONT_BIG
 
 #
 # Table modell für Messwerttabelle
@@ -164,6 +163,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
    def refresh(self):
       if not self.isVisible():
          return
+      entries=[ ]
       try:
 #
 #        alte Plotdatei löschen
@@ -274,5 +274,4 @@ class cls_PlotDialog(QtWidgets.QDialog):
 #
    def do_exit(self):
       self.close()
-      self=None
 

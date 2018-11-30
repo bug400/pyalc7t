@@ -27,8 +27,12 @@
 # Changelog
 # 05.02.17 jsi
 # - erste Version
+# 06.10.2018 jsi
+# - Version 1.0.1
+# 30.11.2018 jsi
+# - PYTHON_REQUIRED_MAJOR, PYTHON_REQUIRED_MINOR eingefügt
 #
-from PyQt5 import QtCore, QtGui
+from PyQt5 import QtGui
 import platform
 #
 #  Plattform bestimmen
@@ -59,9 +63,6 @@ def encode_version(version_string):
 #
 # Fonts, wird in cls_ui initialisiert
 #
-FONT_NORMAL= None
-FONT_BOLD= None
-FONT_BIG= None
 FONT_NORMAL=QtGui.QFont()
 FONT_BOLD=QtGui.QFont()
 FONT_BOLD.setBold(True)
@@ -73,8 +74,13 @@ FONT_BIG.setBold(True)
 # Programmkonstanten ----------------------------------------------------------------
 #
 PRODUCION= True       # Production/Development Version
-VERSION="1.0.0"       # pyalc7t version number
+VERSION="1.0.1"       # pyalc7t version number
 CONFIG_VERSION="1"    # Version number of alc7t config file, must be string
+#
+# Python minimum version
+#
+PYTHON_REQUIRED_MAJOR=3
+PYTHON_REQUIRED_MINOR=4
 
 #
 # bei Entwicklungsversionen "(Development)" an Versionsnummer und "d" an config file anfügen
@@ -131,6 +137,6 @@ UMIN_INIT = 99.999
 
 class KanalError(Exception):
    def __init__(self,msg,add_msg= None):
-      self.msg= msg;
+      self.msg= msg
       self.add_msg = add_msg
 
