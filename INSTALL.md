@@ -42,7 +42,7 @@ Für die Installation von pyALC7T und der Python Laufzeitumgebung werden rund
 700 MB freier Speicherplatz benötigt. Die Installation kann lokal erfolgen und 
 benötigt dann keine Administrator Rechte.
 
-Für die ANACONDA Plattform existiert pyALC7T nur für die Python Version 3.6.
+Für die ANACONDA Plattform existiert pyALC7T nur für die Python Version 3.7.
 
 Die folgenden Anweisungen gelten für Windows, LINUX und Mac OS.
 
@@ -78,14 +78,14 @@ Führen Sie ab und zu den Befehl:
 um den Zwischenspeicher heruntergeladener Anaconda Softwarepakete zu löschen und
 Plattenplatz frei zu geben.
 
-pyALC7t benötigt Python 3.6. Sie können die aktuell installierte Python Version mit
+pyALC7t benötigt Python 3.7. Sie können die aktuell installierte Python Version mit
 
      conda list
 
 überprüfen. Wenn eine ältere Python Version installiert ist können Sie mit dem
-folgenden Befehl die Version 3.6 installieren:
+folgenden Befehl die Version 3.7 installieren:
 
-     conda install python=3.6
+     conda install python=3.7
 
 
 Installation von GNUPLOT
