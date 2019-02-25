@@ -31,6 +31,9 @@
 # - Version 1.0.1
 # 30.11.2018 jsi
 # - PYTHON_REQUIRED_MAJOR, PYTHON_REQUIRED_MINOR eingefügt
+# 24.02.2019 jsi
+# - Version 1.0.2
+# - Grenzwerte für max. Lade-/Entladestrom
 #
 from PyQt5 import QtGui
 import platform
@@ -73,8 +76,8 @@ FONT_BIG.setBold(True)
 #
 # Programmkonstanten ----------------------------------------------------------------
 #
-PRODUCION= True       # Production/Development Version
-VERSION="1.0.1"       # pyalc7t version number
+PRODUCION= False      # Production/Development Version
+VERSION="1.0.2"       # pyalc7t version number
 CONFIG_VERSION="1"    # Version number of alc7t config file, must be string
 #
 # Python minimum version
@@ -134,6 +137,11 @@ dict_strr= { STRR_UNDEF : '-', STRR_LADEN : 'laden', STRR_ENTLADEN : 'entladen' 
 STAT_DISABLED = 0
 STAT_ENABLED = 1
 UMIN_INIT = 99.999
+
+# Max Ladekapazität (120%)
+CGRENZ=1.2
+# Max Lade-/Entladestrom (120%)
+IGRENZ=1.2
 
 class KanalError(Exception):
    def __init__(self,msg,add_msg= None):

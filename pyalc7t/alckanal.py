@@ -37,6 +37,10 @@
 # - Update Tabelle/Plot per Signal
 # 06.11.2018 jsi
 # - delay bei Messung implementiert
+# 24.02.2019 jsi
+# - Zwangsabschaltung falls der gemessene Lade- oder Entladestrom die
+#   voreingestellten Werte um mehr als 20% übersteigt. Gilt nicht
+#   für das Programm "Auffrischen".
 #
 
 from PyQt5 import QtCore, QtWidgets
@@ -268,6 +272,7 @@ class cls_kanal(QtCore.QObject):
       self.Aufz= False
       self.CFlag = False
       self.CGrFlag= False
+      self.IGrFlag= False
 #
 #     Zeitmessung
 #
@@ -300,7 +305,9 @@ class cls_kanal(QtCore.QObject):
          raise KanalError('Kann Kanalkonfiguration nicht abfragen', e.value)
 
       self.UNenn= dict_akku_spannung[self.AKTyp]* self.AnzZellen
-      self.CLadGr= self.CNenn* 1.2
+      self.CLadGr= self.CNenn* CGRENZ
+      self.ILadGr= self.ILad* IGRENZ
+      self.IEntlGr= self.IEntl* IGRENZ
 
 #
 #     Neuberechnung des Schwellenwertes, ab dem Aufzeichnung beginnt
@@ -451,6 +458,21 @@ class cls_kanal(QtCore.QObject):
       if self.CFlag:
          self.CMess= self.CEntl
 #
+#     Lade- oder Entladestrom zu hoch (mehr als 10%)
+#
+      if self.Progr != PROG_REFRESH:
+          if (self.IRichtg== STRR_LADEN and (self.IMess > self.ILadGr)) or (self.IRichtg==STRR_ENTLADEN and (self.IMess > self.IEntlGr)):
+            try:
+               self.alc7t.commobject.write_KanAktivieren(kanalnr,KSTAT_INAKTIV)
+               self.KanStatus= self.alc7t.commobject.read_KanStatus(kanalnr)
+
+            except Rs232Error as e:
+               raise KanalError('Kann Kanal nicht deaktivieren',e.value)
+
+            self.IGrFlag= True
+            self.AkStatus= AKSTAT_AKKU_VOLL
+
+#
 #     Kapazitätsgrenze überschritten?
 #
       if self.IRichtg== STRR_LADEN and self.Progr != PROG_REFRESH and self.CLad > self.CLadGr:
@@ -588,6 +610,8 @@ class cls_kanal(QtCore.QObject):
             return
          if self.CGrFlag:
             self.write_log_msg("Abbruch: Ladekapazitätsgrenzwert (%6.3f Ah) erreicht." % self.CLadGr)
+         elif self.IGrFlag:
+            self.write_log_msg("Abbruch: Lade-/Entladestrom zu groß (%6.3f Ah) erreicht." % self.IMess)
          else:
             l.write("#\n")
             l.write("# Programmende\n")
