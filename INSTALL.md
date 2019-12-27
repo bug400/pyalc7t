@@ -44,10 +44,7 @@ benötigt dann keine Administrator Rechte.
 
 Für die ANACONDA Plattform existiert pyALC7T nur für die Python Version 3.7.
 
-Die folgenden Anweisungen gelten für Windows, LINUX und Mac OS.
-
-Gehen Sie gemäß dem [Quick Install Guide](http://conda.pydata.org/docs/install/quick.html)
-und installieren Sie zunächst Miniconda.
+Laden Sie [Miniconda](https://docs.conda.io/en/latest/miniconda.html) herunter und installieren Sie die Software gemäß [Installationsanleitung](https://conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
 Wenn Sie Miniconda das erste Mal installieren, dann müssen Sie das Installationsprogramm
 die PATH Variable Ihrer Benutzerumgebung modifizieren lassen.
