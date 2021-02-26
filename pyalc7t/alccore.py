@@ -34,6 +34,9 @@
 # 24.02.2019 jsi
 # - Version 1.0.2
 # - Grenzwerte für max. Lade-/Entladestrom
+# 24.02.2021 jsi
+# - Version 1.0.3
+# - Ladestrombegrenzung in den ersten 120 Sekunden des Ladevorgangs entfernt
 #
 from PyQt5 import QtGui
 import platform
@@ -76,8 +79,8 @@ FONT_BIG.setBold(True)
 #
 # Programmkonstanten ----------------------------------------------------------------
 #
-PRODUCION= False      # Production/Development Version
-VERSION="1.0.2"       # pyalc7t version number
+PRODUCION= True       # Production/Development Version
+VERSION="1.0.3"       # pyalc7t version number
 CONFIG_VERSION="1"    # Version number of alc7t config file, must be string
 #
 # Python minimum version
@@ -142,6 +145,8 @@ UMIN_INIT = 99.999
 CGRENZ=1.2
 # Max Lade-/Entladestrom (120%)
 IGRENZ=1.2
+# Zeitdauer seit Beginn der Aufzeichnung, in dem die Lade-/Entladestromüberprüfung ausgesetzt wird (Sek)
+TCHECKDELAY=120
 
 class KanalError(Exception):
    def __init__(self,msg,add_msg= None):

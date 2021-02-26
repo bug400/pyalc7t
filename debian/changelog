@@ -1,3 +1,9 @@
+pyalc7t (1.0.3ubuntu1) focal; urgency=medium
+
+  * Stromwächter wird in den ersten 120 Sekunden deaktiviert, damit nicht beim Einschwingen des Ladestroms abgeschaltet wird. 
+
+ -- wily <achim@trillian>  Wed, 24 Feb 2021 08:51:55 +0100
+
 pyalc7t (1.0.2ubuntu1) bionic; urgency=medium
 
   * Stromwächter implementiert 

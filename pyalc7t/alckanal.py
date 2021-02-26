@@ -458,10 +458,15 @@ class cls_kanal(QtCore.QObject):
       if self.CFlag:
          self.CMess= self.CEntl
 #
-#     Lade- oder Entladestrom zu hoch (mehr als 10%)
+#     Lade- oder Entladestrom zu hoch (mehr als IGRENZ%)
 #
       if self.Progr != PROG_REFRESH:
-          if (self.IRichtg== STRR_LADEN and (self.IMess > self.ILadGr)) or (self.IRichtg==STRR_ENTLADEN and (self.IMess > self.IEntlGr)):
+          Laufzeit= int(self.DeltaTime.total_seconds())
+          if ((self.IRichtg== STRR_LADEN and (self.IMess > self.ILadGr)) or (self.IRichtg==STRR_ENTLADEN and (self.IMess > self.IEntlGr))) and Laufzeit > TCHECKDELAY:
+            if (self.IRichtg== STRR_LADEN):
+               self.write_log_msg("Ladestrom überschritten %1.3f A (Grenzwert %1.3f A)" % (self.IMess, self.ILadGr) )
+            else:
+               self.write_log_msg("Entladestrom überschritten %1.3f A (Grenzwert %1.3f A)" % (self.IMess, self.IEntldGr) )
             try:
                self.alc7t.commobject.write_KanAktivieren(kanalnr,KSTAT_INAKTIV)
                self.KanStatus= self.alc7t.commobject.read_KanStatus(kanalnr)
@@ -476,6 +481,7 @@ class cls_kanal(QtCore.QObject):
 #     Kapazitätsgrenze überschritten?
 #
       if self.IRichtg== STRR_LADEN and self.Progr != PROG_REFRESH and self.CLad > self.CLadGr:
+         self.write_log_msg("Kapazitätsgrenze überschritten %6.3f Ah (Grenzwert %5.3f Ah)" % (self.CLad, self.CLadGr) )
          try:
             self.alc7t.commobject.write_KanAktivieren(kanalnr,KSTAT_INAKTIV)
             self.KanStatus= self.alc7t.commobject.read_KanStatus(kanalnr)
