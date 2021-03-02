@@ -590,7 +590,7 @@ class cls_ui(QtWidgets.QMainWindow):
       self.actionExit=self.menuFile.addAction("Beenden")
 
       self.actionAbout=self.menuHelp.addAction("Über")
-      self.actionHelp=self.menuHelp.addAction("Hilfe")
+      self.actionHelp=self.menuHelp.addAction("Handbuch")
 #
 #     Central widget 
 #
