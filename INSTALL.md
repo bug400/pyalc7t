@@ -75,14 +75,14 @@ Führen Sie ab und zu den Befehl:
 um den Zwischenspeicher heruntergeladener Anaconda Softwarepakete zu löschen und
 Plattenplatz frei zu geben.
 
-pyALC7t benötigt Python 3.7. Sie können die aktuell installierte Python Version mit
+pyALC7t benötigt Python 3.9. Sie können die aktuell installierte Python Version mit
 
      conda list
 
 überprüfen. Wenn eine ältere Python Version installiert ist können Sie mit dem
-folgenden Befehl die Version 3.7 installieren:
+folgenden Befehl die Version 3.9 installieren:
 
-     conda install python=3.7
+     conda install python=3.9
 
 
 Installation von GNUPLOT
