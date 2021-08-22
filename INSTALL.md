@@ -42,7 +42,7 @@ Für die Installation von pyALC7T und der Python Laufzeitumgebung werden rund
 700 MB freier Speicherplatz benötigt. Die Installation kann lokal erfolgen und 
 benötigt dann keine Administrator Rechte.
 
-Für die ANACONDA Plattform existiert pyALC7T nur für die Python Version 3.7.
+Für die ANACONDA Plattform existiert pyALC7T nur für die Python Version 3.9.
 
 Laden Sie [Miniconda](https://docs.conda.io/en/latest/miniconda.html) herunter und installieren Sie die Software gemäß [Installationsanleitung](https://conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
