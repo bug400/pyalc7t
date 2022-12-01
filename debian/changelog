@@ -1,8 +1,14 @@
-pyalc7t (1.0.3ubuntu1) focal; urgency=medium
+pyalc7t (1.1.0) bullseye; urgency=medium
+
+  * Kompatibilität mit PyQt5 und PySide6
+
+ -- bullseye <achim@trillian>  Thu, 01 Dec 2022 13:36:40 +0100
+
+pyalc7t (1.0.3) bullseye; urgency=medium
 
   * Stromwächter wird in den ersten 120 Sekunden deaktiviert, damit nicht beim Einschwingen des Ladestroms abgeschaltet wird. 
 
- -- wily <achim@trillian>  Wed, 24 Feb 2021 08:51:55 +0100
+ -- bullseye <bullseye@trillian>  Wed, 24 Feb 2021 08:51:55 +0100
 
 pyalc7t (1.0.2ubuntu1) bionic; urgency=medium
 

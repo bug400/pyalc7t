@@ -25,10 +25,17 @@
 # Thread Klasse  -----------------------------------------------------------
 #
 # Changelog
-# 06.02.2017 Ersterstellung
+# 06.02.2017 jsi
+# - Ersterstellung
+# 30.11.2022 jsi
+# - PySide6 Migration
 #
-from PyQt5 import QtCore
 from .alccore import *
+if QTBINDINGS=="PySide6":
+   from PySide6 import QtCore, QtWidgets
+if QTBINDINGS=="PyQt5":
+   from PyQt5 import QtCore, QtWidgets
+
 from .alckanal import KanalError
 
 

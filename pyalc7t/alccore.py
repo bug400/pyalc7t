@@ -37,9 +37,12 @@
 # 24.02.2021 jsi
 # - Version 1.0.3
 # - Ladestrombegrenzung in den ersten 120 Sekunden des Ladevorgangs entfernt
+# 30.11.2022 jsi
+# - Qt Bindings ermitteln
+# - Version 1.1.0
 #
-from PyQt5 import QtGui
 import platform
+import sys
 #
 #  Plattform bestimmen
 #
@@ -66,21 +69,12 @@ def encode_version(version_string):
    subversion="".join(filter(lambda x: x.isdigit(),v[2]))
    return int(major)*10000+ int(minor)*100 + int(subversion)
 
-#
-# Fonts, wird in cls_ui initialisiert
-#
-FONT_NORMAL=QtGui.QFont()
-FONT_BOLD=QtGui.QFont()
-FONT_BOLD.setBold(True)
-FONT_BIG=QtGui.QFont()
-fontinfo= QtGui.QFontInfo(FONT_NORMAL)
-FONT_BIG.setBold(True)
 
 #
 # Programmkonstanten ----------------------------------------------------------------
 #
 PRODUCION= True       # Production/Development Version
-VERSION="1.0.3"       # pyalc7t version number
+VERSION="1.1.0"       # pyalc7t version number
 CONFIG_VERSION="1"    # Version number of alc7t config file, must be string
 #
 # Python minimum version
@@ -153,3 +147,63 @@ class KanalError(Exception):
       self.msg= msg
       self.add_msg = add_msg
 
+#
+# QT Bindings bestimmen
+#
+QTBINDINGS="None"
+HAS_WEBENGINE=False
+HAS_WEBKIT=False
+# already loaded
+for _b in('PyQt5','PySide6'):
+   if _b+'.QtCore' in sys.modules:
+      QTBINDINGS=_b
+      break
+else:
+   try:
+      import PySide6.QtCore
+   except ImportError:
+      if "PySide6" in sys.modules:
+         del sys.modules["Pyside6"]
+      try:
+         import PyQt5.QtCore
+      except ImportError:
+         if "PyQt5" in sys.modules:
+            del sys.modules["Pyside6"]
+         raise ImportError("No Qt bindings found")
+      else:
+         QTBINDINGS="PyQt5"
+         from PyQt5 import QtPrintSupport,QtGui
+         QT_FORM_A4=QtPrintSupport.QPrinter.A4
+         QT_FORM_LETTER=QtPrintSupport.QPrinter.Letter
+         try:
+            from PyQt5 import QtWebKitWidgets
+            HAS_WEBKIT=True
+         except:
+            pass
+         try:
+            from PyQt5 import QtWebEngineWidgets
+            HAS_WEBENGINE=True
+         except:
+            pass
+         if HAS_WEBKIT and HAS_WEBENGINE:
+           HAS_WEBENGINE=False
+   else:
+      QTBINDINGS="PySide6"
+      from PySide6 import QtGui
+      QT_FORM_A4=QtGui.QPageSize.A4
+      QT_FORM_LETTER=QtGui.QPageSize.Letter
+      try:
+         from PySide6 import QtWebEngineWidgets
+         HAS_WEBENGINE=True
+      except:
+         pass
+
+#
+# Fonts, wird in cls_ui initialisiert
+#
+FONT_NORMAL=QtGui.QFont()
+FONT_BOLD=QtGui.QFont()
+FONT_BOLD.setBold(True)
+FONT_BIG=QtGui.QFont()
+fontinfo= QtGui.QFontInfo(FONT_NORMAL)
+FONT_BIG.setBold(True)

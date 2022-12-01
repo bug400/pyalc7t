@@ -44,36 +44,32 @@
 # - Diagrammgröße konfigurierbar
 # 06.11.2018 jsi:
 # - Pause zwischen Messungen konfigurierbar
+# 30.11.2022 jsi
+# - PySide6 Migration
 #
 import os
 import glob
 import sys
 import re
 import json
-import pyalc7t
-from PyQt5 import QtCore, QtWidgets
-from .alccore import *
 from .alcconfig import ALCCONFIG
+from .alccore import *
 if isWINDOWS():
    import winreg
+if QTBINDINGS=="PySide6":
+   from PySide6 import QtCore, QtWidgets
+   if HAS_WEBENGINE:
+      from PySide6 import QtWebEngineWidgets
+if QTBINDINGS=="PyQt5":
+   from PyQt5 import QtCore, QtWidgets
+   if HAS_WEBKIT:
+      from PyQt5 import QtWebKitWidgets
+   if HAS_WEBENGINE:
+      from PyQt5 import QtWebEngineWidgets
+
+import pyalc7t
 
 #
-# Ermittlung ob WebKit oder WebEngine verfügbar sind
-#
-HAS_WEBKIT=False
-HAS_WEBENGINE=False
-try:
-   from PyQt5 import QtWebKitWidgets
-   HAS_WEBKIT= True
-except:
-   pass
-try:
-   from PyQt5 import QtWebEngineWidgets
-   HAS_WEBENGINE=True
-except:
-   pass
-if HAS_WEBKIT and HAS_WEBENGINE:
-   HAS_WEBENGINE=False
 
 #
 # About Dialog class --------------------------------------------------------
@@ -82,7 +78,11 @@ class cls_AboutWindow(QtWidgets.QDialog):
 
    def __init__(self,version):
       super().__init__()
-      self.qtversion=QtCore.QT_VERSION_STR
+      if QTBINDINGS=="PySide6":
+         self.qtversion=QtCore.__version__
+      if QTBINDINGS=="PyQt5":
+         self.qtversion=QtCore.QT_VERSION_STR
+
       self.pyversion=str(sys.version_info.major)+"."+str(sys.version_info.minor)+"."+str(sys.version_info.micro)
       self.setWindowTitle('pyALC7T About ...')
       self.vlayout = QtWidgets.QVBoxLayout()
@@ -215,7 +215,7 @@ class cls_TtyWindow(QtWidgets.QDialog):
          for port in devlist:
             self.__ComboBox__.addItem( port, port )
 
-      self.__ComboBox__.activated['QString'].connect(self.combobox_choosen)
+      self.__ComboBox__.activated[int].connect(self.combobox_choosen)
       self.__ComboBox__.editTextChanged.connect(self.combobox_textchanged)
       self.buttonBox = QtWidgets.QDialogButtonBox()
       self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
@@ -396,7 +396,7 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
       dialog=QtWidgets.QFileDialog()
       dialog.setWindowTitle("pyALC7T Arbeitsverzeichnis auswählen")
       dialog.setAcceptMode(QtWidgets.QFileDialog.AcceptOpen)
-      dialog.setFileMode(QtWidgets.QFileDialog.DirectoryOnly)
+      dialog.setFileMode(QtWidgets.QFileDialog.Directory)
       dialog.setOptions(QtWidgets.QFileDialog.DontUseNativeDialog)
       if dialog.exec():
          return dialog.selectedFiles()
@@ -1038,7 +1038,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
    def getKanalConfigOutputFileName(self):
       dialog=QtWidgets.QFileDialog()
       dialog.setWindowTitle("pyALC7T Kanalkonfigurationsdatei")
-      dialog.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
+      dialog.setAcceptMode(QtWidgets.QFileDialog.AcceptOpen)
       dialog.setDefaultSuffix(".alc")
       dialog.setFileMode(QtWidgets.QFileDialog.AnyFile)
       dialog.setNameFilters(["Kanalkonfiguration (*.alc)"])
@@ -1071,17 +1071,17 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
 # Action-Script: Konfiguration programmieren ---
 #
    def do_programmieren(self):
+      g=QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
       self.kanal.AKTyp= self.config['AKTyp']
       self.kanal.AnzZellen= self.config['AnzZellen']
       self.kanal.CNenn=self.config['CNenn']
       self.kanal.ILad= self.config['ILad']
       self.kanal.IEntl= self.config['IEntl']
       try:
-         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
          self.kanal.kanal_programmieren(self.config)
-         QtWidgets.QApplication.restoreOverrideCursor()
+         g=QtWidgets.QApplication.restoreOverrideCursor()
       except KanalError as e:
-         QtWidgets.QApplication.restoreOverrideCursor()
+         g=QtWidgets.QApplication.restoreOverrideCursor()
          reply=QtWidgets.QMessageBox.critical(self,'Fehler',"Kanalkonfiguration kann nicht eingestellt werden. "+e.msg,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
 
    @staticmethod

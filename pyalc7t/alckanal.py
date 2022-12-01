@@ -41,24 +41,33 @@
 # - Zwangsabschaltung falls der gemessene Lade- oder Entladestrom die
 #   voreingestellten Werte um mehr als 20% übersteigt. Gilt nicht
 #   für das Programm "Auffrischen".
+# 30.11.2022 jsi
+# - PySide6 Migration
 #
 
-from PyQt5 import QtCore, QtWidgets
 import datetime
 import os
 import time
+from .alccore import *
+if QTBINDINGS=="PySide6":
+   from PySide6 import QtCore, QtWidgets
+if QTBINDINGS=="PyQt5":
+   from PyQt5 import QtCore,  QtWidgets
+
 from .alcwidgets import cls_KanalWidget, cls_KanalConfigWindow, cls_AlcMessageBox
 from .alcconfig import ALCCONFIG
 from .alcplot import cls_PlotDialog
 from .alcrs232 import Rs232Error
-from .alccore import *
 
 #
 # Objektklasse für die Kanäle -----------------------------------------------------
 #
 class cls_kanal(QtCore.QObject):
 
-   sig_refresh= QtCore.pyqtSignal()
+   if QTBINDINGS=="PySide6":
+      sig_refresh= QtCore.Signal()
+   if QTBINDINGS=="PyQt5":
+      sig_refresh= QtCore.pyqtSignal()
 
    def __init__(self, alc7t, kanalnr):
       super().__init__()
@@ -674,18 +683,18 @@ class cls_kanal(QtCore.QObject):
 #  Neues Programm für eine Kanal einstellen, Kanal bleibt inaktiv ---
 #
    def do_config_program(self,programm):
+      g=QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
       self.reset_vars()
       self.alc7t.commthread.halt()
       try:
-         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
          self.alc7t.commobject.write_Progr(self.kanalnummer,programm)
          while True:
             p= self.alc7t.commobject.read_Progr(self.kanalnummer)
             if p == programm:
-               QtWidgets.QApplication.restoreOverrideCursor()
+               g=QtWidgets.QApplication.restoreOverrideCursor()
                break
       except Rs232Error as e:
-         QtWidgets.QApplication.restoreOverrideCursor()
+         g=QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
          reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht einstellen: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
       self.Progr=programm
@@ -752,18 +761,18 @@ class cls_kanal(QtCore.QObject):
          mb.setDetailedText(meldungen)
          mb.exec_()
          return
+      g=QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
       self.reset_vars()
       self.alc7t.commthread.halt()
       try:
-         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
          self.alc7t.commobject.write_KanAktivieren(self.kanalnummer,1)
          while True:
             p= self.alc7t.commobject.read_KanStatus(self.kanalnummer)
             if p == 1:
-               QtWidgets.QApplication.restoreOverrideCursor()
+               g=QtWidgets.QApplication.restoreOverrideCursor()
                break
       except Rs232Error as e:
-         QtWidgets.QApplication.restoreOverrideCursor()
+         g=QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
          reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht starten: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          return
@@ -774,17 +783,17 @@ class cls_kanal(QtCore.QObject):
 # laufendes Programm des Kanals stoppen ---
 #
    def do_stop(self):
+      g=QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
       self.alc7t.commthread.halt()
       try:
-         QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
          self.alc7t.commobject.write_KanAktivieren(self.kanalnummer,0)
          while True:
             p= self.alc7t.commobject.read_KanStatus(self.kanalnummer)
             if p == 0:
-               QtWidgets.QApplication.restoreOverrideCursor()
+               g=QtWidgets.QApplication.restoreOverrideCursor()
                break
       except Rs232Error as e:
-         QtWidgets.QApplication.restoreOverrideCursor()
+         g=QtWidgets.QApplication.restoreOverrideCursor()
          self.alc7t.commthread.resume()
          reply=QtWidgets.QMessageBox.critical(self.ui,'Fehler',"Kann Ladeprogramm nicht beenden: "+e.value,QtWidgets.QMessageBox.Ok,QtWidgets.QMessageBox.Ok)
          return

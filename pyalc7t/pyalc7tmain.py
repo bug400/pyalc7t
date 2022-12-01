@@ -39,6 +39,8 @@
 # - minimale Fensterposition (50,50)
 # 06.11.2018 jsi
 # - Konfigurationsparameter delay eingeführt
+# 30.11.2022 jsi
+# - PySide6 Migration
 #
 #
 import os
@@ -46,9 +48,12 @@ import sys
 import argparse
 import signal
 import traceback
-
-from PyQt5 import QtCore, QtWidgets
 from .alccore import *
+if QTBINDINGS=="PySide6":
+   from PySide6 import QtCore, QtWidgets
+if QTBINDINGS=="PyQt5":
+   from PyQt5 import QtCore, QtWidgets
+
 from .alcrs232 import cls_rs232, Rs232Error
 from .alcconfig import AlcConfigError, ALCCONFIG
 from .alckanal import cls_kanal
@@ -60,9 +65,14 @@ from .alcwidgets import cls_ui, cls_AboutWindow, cls_HelpWindow, HelpError,cls_A
 #
 class cls_alc7t(QtCore.QObject):
 
-   sig_show_message=QtCore.pyqtSignal(str)
-   sig_crash=QtCore.pyqtSignal()
-   sig_quit=QtCore.pyqtSignal()
+   if QTBINDINGS=="PySide6":
+      sig_show_message=QtCore.Signal(str)
+      sig_crash=QtCore.Signal()
+      sig_quit=QtCore.Signal()
+   if QTBINDINGS=="PyQt5":
+      sig_show_message=QtCore.pyqtSignal(str)
+      sig_crash=QtCore.pyqtSignal()
+      sig_quit=QtCore.pyqtSignal()
 
 
    def __init__(self,args):

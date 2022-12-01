@@ -32,14 +32,20 @@
 # - tabellen/zellengröße verbessert
 # 28.03.17 - jsi
 # Layoutfehler beseitigt, Auffrischen Tabelle/Plot per Signal, Plotgröße konfigurierbar
+# 30.11.22 jsi
+# - PySide6 Migration
 #
 import os
 import subprocess
 import datetime
 
-from PyQt5 import QtCore, QtGui, QtWidgets
+from .alccore import *
+if QTBINDINGS=="PySide6":
+   from PySide6 import QtCore, QtWidgets
+if QTBINDINGS=="PyQt5":
+   from PyQt5 import QtCore,  QtWidgets
 from .alcconfig import ALCCONFIG
-from .alccore import FONT_BIG
+
 
 #
 # Table modell für Messwerttabelle
@@ -103,7 +109,7 @@ class cls_PlotDialog(QtWidgets.QDialog):
       self.table.setModel(self.model)
       self.dataFont= QtGui.QFont()
       metrics= QtGui.QFontMetrics(self.dataFont)
-      item_width= metrics.width(" 00:00:0000 ")
+      item_width= metrics.boundingRect(" 00:00:0000 ").width()
       self.table.horizontalHeader().setDefaultSectionSize(item_width+2)
       self.table.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
 #
