@@ -10,7 +10,7 @@ Index
 * [Einrichtung von pyALC7T](#einrichtung-von-pyalc7t)
 * [Bedienung](#bedienung)
 * [Installation ohne die ANACONDA Plattform](#installation-ohne-die-anaconda-plattform)
-* [Installation unter RASPBIAN](#installation-unter-raspbian)
+* [Installation mit Qt6 und PIP](#installation-mit-qt6-und-pip)
 * [Installation von Entwicklungsversionen](#installation-von-entwicklungsversionen)
 
 
@@ -147,17 +147,58 @@ pyalc7t Verzeichnis und geben folgenden Befehl
 
 in einem Terminal- oder Konsolefenster ein.
 
-Installation unter RASPBIAN
----------------------------
+Installation mit Qt6 und PIP
+----------------------------
 
-Der Raspberry Pi ist für den Einsatz von pyALC7T gut geeignet. Für die Installation
-muss das Debian Paket für RASPIAN verwendet werden (siehe [Releases](https://github.com/bug400/pyalc7t/releases)). Laden sie das Debian Paket herunter und installieren
-es als root mit folgenden Befehlen:
+Ab Version 1.1.0 unterstützt pyALC7T sowohl das PyQt5 Interface für QT5 als auch das neue PySide6 Interface für Qt6.
 
-    dpkg -i pyalc7t_x.y.z_raspian_all.deb
-    apt-get -f install
+Zur Zeit ist PySide6 für die ANACONDA Plattform noch nicht verfügbar. Daher müssen Python, Qt6 und PySide6 aus anderen Quellen installiert werden.
 
-Der zweite Befehl installiert die von pyALC7T noch zusätzlich benötigten Pakete.
+Zunächst benötigt man eine aktuelle Python Version:
+
+* Windows: Python kann aus dem Microsoft Store heruntergeladen werden
+* macOS: Ein Universal Binary kann von der [www.python.org](https://www.python.org) Website heruntergeladen werden
+* Linux: Python kann aus den Repositories der betreffenden Linux-Distribution herunter geladen werden, sofern es nicht sowieso schon installiert ist.
+
+Nun erstellt man eine virtuelle Python Umgebung für pyALC7T. Diese Umgebung wird
+in einem Unterverzeichnis angelegt und enthält alle Software, die für das
+Ausführen von pyALC7T benötigt wird. Dieses Verzeichnis kann problemlos gelöscht werden, falls man die betreffende virtuelle Umgebung nicht mehr benötigt.
+
+Um nun eine virtuelle Umgebung "pyalc7t" anzulegen, öffnet man ein Terminalfenster (oder eine Windows Eingabeaufforderung), positioniert sich an einer geeigneten Stelle im Dateisystems und gibt ein:
+
+        python -m venv pyalc7t
+
+Dies erzeugt ein Verzeichnis "pyalc7t" im aktuellen Arbeitsverzeichnis.
+
+Nun aktiviert man die neue Umgebun mit:
+
+        source pyalc7t/bin/activate (Linux, macOS)
+oder
+
+        pyalc7t\Scripts\activate (Windows)
+
+Wenn der Name der virtuellen Umgebung in der Eingabeaufforderung erscheint, dann ist die virtuelle Umgebung aktiv.
+
+Nun installiert man die zur Ausführung von pyALC7T benötigte zusätzliche Software:
+
+        python -m pip install PySide6 pyserial
+
+Dann installiert man pyALC7T, wie im folgenden Kapitel beschrieben.
+
+Die virtuelle Umgebung kann man mit dem Befehl:
+
+        deactivate
+
+deaktivieren.
+
+Man kann pyALC7T auch ohne Aktivierung der Umgebung ausführen:
+       
+        <abs. Pfad Environment Verzeichnis>/bin/python3 <abs. Pfad pyALC7T Verzeichnis>start.py
+
+oder unter Windows:
+
+        <abs. Pfad Environment Verzeichnis>\Scripts\python3 <abs. Pfad pyALC7T Verzeichnis>\start.py
+
 
 
 Installation von Entwicklungsversionen
