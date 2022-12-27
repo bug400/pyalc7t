@@ -179,11 +179,9 @@ oder
 
 Wenn der Name der virtuellen Umgebung in der Eingabeaufforderung erscheint, dann ist die virtuelle Umgebung aktiv.
 
-Nun installiert man die zur Ausführung von pyALC7T benötigte zusätzliche Software:
+Nun installiert man pyALC7T und die zur Ausführung benötigte zusätzliche Software:
 
-        python -m pip install PySide6 pyserial
-
-Dann installiert man pyALC7T, wie im folgenden Kapitel beschrieben.
+        python -m pip install pyalc7t
 
 Die virtuelle Umgebung kann man mit dem Befehl:
 
