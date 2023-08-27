@@ -42,9 +42,9 @@ Für die Installation von pyALC7T und der Python Laufzeitumgebung werden rund
 700 MB freier Speicherplatz benötigt. Die Installation kann lokal erfolgen und 
 benötigt dann keine Administrator Rechte.
 
-Für die ANACONDA Plattform existiert pyALC7T nur für die Python Version 3.9.
+Für die ANACONDA Plattform wird für pyALC7T mindestens die Python Versionen 3.9 benötigt.
 
-Laden Sie [Miniconda](https://docs.conda.io/en/latest/miniconda.html) herunter und installieren Sie die Software gemäß [Installationsanleitung](https://conda.io/projects/conda/en/latest/user-guide/install/index.html).
+Laden Sie [Miniconda](https://docs.conda.io/en/latest/miniconda.html) für Python 3.11 herunter und installieren Sie die Software gemäß [Installationsanleitung](https://conda.io/projects/conda/en/latest/user-guide/install/index.html).
 
 Wenn Sie Miniconda das erste Mal installieren, dann müssen Sie das Installationsprogramm
 die PATH Variable Ihrer Benutzerumgebung modifizieren lassen.
@@ -75,7 +75,7 @@ Führen Sie ab und zu den Befehl:
 um den Zwischenspeicher heruntergeladener Anaconda Softwarepakete zu löschen und
 Plattenplatz frei zu geben.
 
-pyALC7t benötigt Python 3.9. Sie können die aktuell installierte Python Version mit
+pyALC7t benötigt mindestens Python 3.9. Sie können die aktuell installierte Python Version mit
 
      conda list
 
