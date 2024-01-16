@@ -65,9 +65,6 @@ Installation
 ------------
 
 pyALC7T setzt voraus, dass der Python Interpreter und das Qt Framework installiert sind.
-Mit dem [Anaconda Python distribution system](https://www.continuum.io/) können
-pyALC7T und die benötigten Laufzeitkomponenten sehr einfach unter Linux, Windows und 
-Mac OS installiert werden.
 
 Dies ist in der [Installationsanleitung](https://github.com/bug400/pyalc7t/blob/master/INSTALL.md) näher beschrieben.
 

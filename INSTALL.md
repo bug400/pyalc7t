@@ -1,6 +1,8 @@
 ﻿pyALC7T Installationsanleitung
 ==============================
 
+Achtung: diese Installationsanleitung ist veraltet und befindet sich in der Überarbeitung
+
 Index
 -----
 
