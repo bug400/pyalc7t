@@ -40,6 +40,8 @@
 # 30.11.2022 jsi
 # - Qt Bindings ermitteln
 # - Version 1.1.0
+# 05.02.2024 jsi
+# - Version 1.1.1
 #
 import platform
 import sys
@@ -74,7 +76,7 @@ def encode_version(version_string):
 # Programmkonstanten ----------------------------------------------------------------
 #
 PRODUCION= True       # Production/Development Version
-VERSION="1.1.0"       # pyalc7t version number
+VERSION="1.1.1"       # pyalc7t version number
 CONFIG_VERSION="1"    # Version number of alc7t config file, must be string
 #
 # Python minimum version

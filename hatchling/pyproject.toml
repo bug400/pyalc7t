@@ -2,13 +2,16 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.build]
+exclude = ['debian/','*.md']
+
 [project]
 name = "pyalc7t"
-version = "1.1.0"
+version = "1.1.1"
 description = "Control program and data logger for the ELV ALC7000 charger"
 readme = "README.md"
 license = { file = "LICENSE" }
-requires-python = ">=3.5"
+requires-python = ">=3.6"
 authors= [
    {email="bug400@gmx.de"},
    {name="Joachim Siebold"}
@@ -29,13 +32,14 @@ classifiers=[
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ]
-[project.scripts]
+[project.gui-scripts]
 pyalc7t="pyalc7t:main"
 

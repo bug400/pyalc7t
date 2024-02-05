@@ -43,6 +43,8 @@
 #   für das Programm "Auffrischen".
 # 30.11.2022 jsi
 # - PySide6 Migration
+# 05.02.2024 jsi
+# - removed deprecation warnings
 #
 
 import datetime
@@ -759,7 +761,7 @@ class cls_kanal(QtCore.QObject):
          mb = cls_AlcMessageBox()
          mb.setText("Fehler bei der Prüfung")
          mb.setDetailedText(meldungen)
-         mb.exec_()
+         mb.exec()
          return
       g=QtWidgets.QApplication.setOverrideCursor(QtCore.Qt.WaitCursor)
       self.reset_vars()

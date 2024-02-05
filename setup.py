@@ -14,7 +14,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
-    version='1.1.0',
+    version='1.1.1',
 
     description='ALC7000',
     long_description=long_description,
@@ -32,7 +32,7 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
 
         # Indicate who your project is intended for
         'Intended Audience :: Modelcrafters',
@@ -51,7 +51,11 @@ setup(
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
     ],
+
+    # required python versions
+    python_requires='>=3.6',
 
     # What does your project relate to?
     keywords='pyqt5 ALC7000',
@@ -60,7 +64,7 @@ setup(
     # simple. Or you can use find_packages().
     packages=find_packages(exclude=['misc', 'debian', 'tests*']),
     package_data = {
-       'pyalc7t' : ['Manual/*.html', 'Manual/css/*.css', 'Manual/js/*.js' ],
+       'pyalc7t' : ['Manual/*.html', 'Manual/css/*.css' ],
     },
 
     entry_points={

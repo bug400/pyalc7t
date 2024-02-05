@@ -41,6 +41,8 @@
 # - Konfigurationsparameter delay eingeführt
 # 30.11.2022 jsi
 # - PySide6 Migration
+# 05.02.2024 jsi
+# - removed deprecation warnings
 #
 #
 import os
@@ -369,7 +371,7 @@ def main():
 
    app = QtWidgets.QApplication(sys.argv)
    alc7t= cls_alc7t(args)
-   sys.exit(app.exec_())
+   sys.exit(app.exec())
 
 if __name__ == "__main__":
    main()

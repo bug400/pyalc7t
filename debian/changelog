@@ -1,3 +1,10 @@
+pyalc7t (1.1.1) bullseye; urgency=medium
+
+  * removed deprecation warnings
+  * manual reformatted 
+
+ -- bullseye <achim@trillian>  Mon, 05 Feb 2024 08:58:42 +0100
+
 pyalc7t (1.1.0) bullseye; urgency=medium
 
   * Kompatibilität mit PyQt5 und PySide6

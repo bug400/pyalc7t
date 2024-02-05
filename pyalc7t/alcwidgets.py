@@ -46,6 +46,8 @@
 # - Pause zwischen Messungen konfigurierbar
 # 30.11.2022 jsi
 # - PySide6 Migration
+# 05.02.2024 jsi
+# - removed deprecation warnings
 #
 import os
 import glob
@@ -252,7 +254,7 @@ class cls_TtyWindow(QtWidgets.QDialog):
    @staticmethod
    def getTtyDevice(parent=None):
       dialog= cls_TtyWindow(parent)
-      result= dialog.exec_()
+      result= dialog.exec()
       if result== QtWidgets.QDialog.Accepted:
          return dialog.getDevice()
       else:
@@ -441,7 +443,7 @@ class cls_AlcConfigWindow(QtWidgets.QDialog):
    @staticmethod
    def getAlcConfig(parent):
       dialog= cls_AlcConfigWindow(parent)
-      result= dialog.exec_()
+      result= dialog.exec()
       if result== QtWidgets.QDialog.Accepted:
          return True
       else:
@@ -1028,7 +1030,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
          mb = cls_AlcMessageBox()
          mb.setText("Fehler bei der Prüfung")
          mb.setDetailedText(meldungen)
-         mb.exec_()
+         mb.exec()
       else:
          self.geprueft= True
       self.update_gui()
@@ -1087,7 +1089,7 @@ class cls_KanalConfigWindow(QtWidgets.QDialog):
    @staticmethod
    def getKanalConfig(kanal):
       dialog=  cls_KanalConfigWindow(kanal)
-      result= dialog.exec_()
+      result= dialog.exec()
       return
 #
 # GUI Klasse Fehlermeldung -----------------------------------------------------------
