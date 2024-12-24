@@ -232,7 +232,7 @@ Prüfung, welche Pakete aktualisiert werden können:
 
 Aktualisierung von pyALC7T:
 
-     python -m pip upgrade pyalc7t
+     python -m pip install --upgrade pyalc7t
 
 
 Weitere Kommandos zur Verwaltung virtueller Python Umgebungen:
@@ -259,7 +259,7 @@ Anzeige, ob neue Paketversionen vorliegen:
 
 Neue Version eines Pakets installieren (pip kann mit pip aktualisiert werden)
 
-     python -m pip upgrade pyalc7t
+     python -m pip install --upgrade <packagename>
 
 Paket Cache löschen (spart Plattenplatz):
 
