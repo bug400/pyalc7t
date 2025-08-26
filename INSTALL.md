@@ -132,7 +132,23 @@ Sie können pyALC7T vom Desktop oder mit dem Finder aufrufen, indem Sie ein Star
 
 ### Installation unter Linux
 
-Es wird empfohlen, den Python3 Interpreter Ihres Linux Systems zu verwenden.
+Es wird empfohlen, den Python3 Interpreter und die QT Software Ihres Linux Systems zu verwenden.
+
+Auf der [Release Seite](https://github.com/bug400/pyalc7t/releases) werden Installationspakete  
+(.deb Dateien) für DEBIAN Linux und dazu kompatible Distributionen angeboten.
+Um ein solches Installationspaket zu installieren führt man das folgende Kommando als root in dem
+Verzeichnis aus, in dem sich das heruntergeladene Installationspaket befindet:
+
+    apt install ./pyilper_X.Y.Z_all.deb
+
+Hiermit werden auch ggf. weitere Pakete installiert, die für die Ablauffähigkeit von pyALC7t notwendig sind.  
+Danach kann das Programm mit:
+
+    pyiler
+
+von der Kommndozeile aufgerufen werden.
+
+
 
 ## Installation von Quellcode aus GitHub
 
